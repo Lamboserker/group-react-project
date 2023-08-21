@@ -16,7 +16,7 @@ function SearchBar() {
         params: {
           query: searchQuery,
           page: 1, // You can adjust this based on your needs
-          per_page: 10, // You can adjust this based on your needs
+          per_page: 1, // You can adjust this based on your needs
           client_id: apiKey,
         },
       })
@@ -28,6 +28,8 @@ function SearchBar() {
       });
     }
   }, [searchQuery]);
+
+  
   const handleDownload = (url) => {
     // Implement the download logic here
   };
