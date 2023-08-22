@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import {fetchSearchResults} from '../UseFetch'
+import { fetchSearchResults } from '../UseFetch';
+import SearchResult from './SearchResult';
+import Popup from 'reactjs-popup';
 
 function SearchBar() {
   const [input, setInput] = useState("");
   const [searchQuery, setSearchQuery] = useState('');
   const [images, setImages] = useState([]);
+  const [showResults, setShowResults] = useState(false);
 
   useEffect(() => {
     if (searchQuery !== '') {
@@ -24,29 +27,26 @@ function SearchBar() {
       const blob = await response.blob();
       const blobUrl = URL.createObjectURL(blob);
 
-      // Create a temporary link element to trigger the download
       const link = document.createElement('a');
       link.href = blobUrl;
-      link.download = 'image.jpg'; // Set the desired file name
+      link.download = 'image.jpg';
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
-      
-      // Clean up the Blob URL
+
       URL.revokeObjectURL(blobUrl);
     } catch (error) {
       console.error('Download error:', error);
     }
   };
 
-  const renderDataOnClick= (e) => {
-
+  const renderDataOnClick = (e) => {
     setSearchQuery(input);
-    console.log(input);
+    setShowResults(true);
   }
 
   return (
-    <div className="App">
+    <div >
       <div>
         <input
           type="text"
@@ -55,30 +55,29 @@ function SearchBar() {
           placeholder="Search for photos"
         />
         <button onClick={renderDataOnClick}>Search</button>
-        <div className="image-list">
-          {images.map(image => (
-            <div key={image.id} className="image-item">
-              <img src={image.urls.small} alt={image.alt_description} />
-              
-              {/*Dropdown Menu for downloading the files*/}
-              <div>
-                
-              <button onClick={() => handleDownload(image.urls.full)}>Download</button>
-              
-              </div>
-
-
+        <Popup
+          
+          modal
+          nested
+          open={showResults}
+          onClose={() => setShowResults(false)}
+        >
+          {close => (
+            <div className="modal">
+              <button className="close" onClick={close}>
+                &times;
+              </button>
+              <SearchResult
+                images={images}
+                handleDownload={handleDownload}
+                onClose={close}
+              />
             </div>
-          ))}
-        </div>
+          )}
+        </Popup>
       </div>
     </div>
   );
 }
 
 export default SearchBar;
-
-
-
-
-
