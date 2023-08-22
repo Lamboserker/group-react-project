@@ -5,34 +5,6 @@
   font-family: "Cabin", sans-serif;
 }
 
-h1 {
-  font-size: 20px;
-  line-height: 65px;
-  color: #fff;
-}
-
-h2 {
-  font-size: 19px;
-  line-height: 54px;
-  color: #fff;
-}
-
-h4 {
-  font-size: 18px;
-  color: #fff;
-}
-
-h6 {
-  font-weight: 700;
-  font-size: 12px;
-}
-
-p {
-  font-size: 16px;
-  color: #000;
-  margin: 15px 0 20px 0;
-}
-
 body {
   width: 100%;
 }
@@ -106,7 +78,6 @@ body {
   border-left: solid 2px #fffefe;
 }
 
-/* Style the dropdown button */
 .dropbtn {
   color: white;
   padding: 12px;
@@ -115,12 +86,10 @@ body {
   cursor: pointer;
 }
 
-/* Style the dropdown content (hidden by default) */
 .dropdown-content {
   display: none;
 }
 
-/* Style the links inside the dropdown */
 .column a {
   color: black;
   padding: 12px 16px;
@@ -129,18 +98,16 @@ body {
   transition: 0.5s ease;
 }
 
-/* Change color on hover */
 .column a:hover {
     text-decoration: underline;
 }
 
 .arrow {
-  font-size: 10px; /* Adjust the font size for the icon */
-  margin-left: 8px; /* Adjust the margin for positioning */
+  font-size: 10px;
+  margin-left: 8px; 
   vertical-align: middle;
 }
 
-/* Adjust dropdown content position for clicked state */
 .dropdown.clicked .dropdown-content {
   display: none;
   margin-top: 3.1rem;
@@ -150,11 +117,28 @@ body {
   min-width: 360px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
-  display: grid; /* Use grid layout */
-  grid-template-columns: 1fr 1fr; /* Two columns with equal width */
-  grid-gap: 20px; /* Add spacing between columns */
+  display: grid; 
+  grid-template-columns: 1fr 1fr; 
+  grid-gap: 20px; 
 }
 
 .column {
     text-align: center;
+}
+/* Hero Section */
+#hero {
+  background: linear-gradient(140deg, rgba(0, 0, 0, 0.9), rgba(255, 255, 225, 0));
+  height: 60vh;
+  width: 100%;
+  background-size: cover;
+  background-position: top 25% right 0;
+  padding: 100px 80px;
+}
+
+#hero h4 {
+  padding-bottom: 15px;
+}
+
+#hero h1 {
+  color: #FFF;
 }
