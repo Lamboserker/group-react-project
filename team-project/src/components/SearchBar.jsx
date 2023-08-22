@@ -1,10 +1,5 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
-
-
-
-const apiKey = process.env.REACT_APP_API_KEY;
-const apiUrl = process.env.REACT_APP_API_URL;
+import React, { useState, useEffect } from 'react';
+import {fetchSearchResults} from '../UseFetch'
 
 function SearchBar() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -12,26 +7,35 @@ function SearchBar() {
 
   useEffect(() => {
     if (searchQuery !== '') {
-      axios.get(`${apiUrl}/search/photos/?${apiKey}`, {
-        params: {
-          query: searchQuery,
-          page: 1, // You can adjust this based on your needs
-          per_page: 1, // You can adjust this based on your needs
-          client_id: apiKey,
-        },
-      })
-      .then(response => {
-        setImages(response.data.results);
-      })
-      .catch(error => {
-        console.error(error);
-      });
+      fetchSearchResults(searchQuery)
+        .then(response => {
+          setImages(response.data.results);
+        })
+        .catch(error => {
+          console.error(error);
+        });
     }
   }, [searchQuery]);
 
-  
-  const handleDownload = (url) => {
-    // Implement the download logic here
+  const handleDownload = async (url) => {
+    try {
+      const response = await fetch(url);
+      const blob = await response.blob();
+      const blobUrl = URL.createObjectURL(blob);
+
+      // Create a temporary link element to trigger the download
+      const link = document.createElement('a');
+      link.href = blobUrl;
+      link.download = 'image.jpg'; // Set the desired file name
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      
+      // Clean up the Blob URL
+      URL.revokeObjectURL(blobUrl);
+    } catch (error) {
+      console.error('Download error:', error);
+    }
   };
 
   return (
@@ -47,7 +51,14 @@ function SearchBar() {
           {images.map(image => (
             <div key={image.id} className="image-item">
               <img src={image.urls.small} alt={image.alt_description} />
+              
+              {/*Dropdown Menu for downloading the files*/}
+              <div>
               <button onClick={() => handleDownload(image.urls.full)}>Download</button>
+              
+              </div>
+
+
             </div>
           ))}
         </div>
@@ -57,3 +68,8 @@ function SearchBar() {
 }
 
 export default SearchBar;
+
+
+
+
+
