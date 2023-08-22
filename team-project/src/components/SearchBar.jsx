@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {fetchSearchResults} from '../UseFetch'
 
 function SearchBar() {
+  const [input, setInput] = useState("");
   const [searchQuery, setSearchQuery] = useState('');
   const [images, setImages] = useState([]);
 
@@ -38,15 +39,22 @@ function SearchBar() {
     }
   };
 
+  const renderDataOnClick= (e) => {
+
+    setSearchQuery(input);
+    console.log(input);
+  }
+
   return (
     <div className="App">
       <div>
         <input
           type="text"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
           placeholder="Search for photos"
         />
+        <button onClick={renderDataOnClick}>Search</button>
         <div className="image-list">
           {images.map(image => (
             <div key={image.id} className="image-item">
@@ -54,6 +62,7 @@ function SearchBar() {
               
               {/*Dropdown Menu for downloading the files*/}
               <div>
+                
               <button onClick={() => handleDownload(image.urls.full)}>Download</button>
               
               </div>
