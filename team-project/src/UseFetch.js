@@ -11,6 +11,7 @@ export const fetchSearchResults = (searchQuery, page = 1, perPage = 1) => {
       page,
       per_page: perPage,
       client_id: apiKey,
+      
     },
   });
 };
@@ -18,3 +19,14 @@ export const fetchSearchResults = (searchQuery, page = 1, perPage = 1) => {
 // You can add more functions for other API calls if needed
 
 // Export other API functions
+
+export const fetchDownloadDrop = (searchQuery, page = 1, perPage = 1) => {
+  return axios.get(`${apiUrl}/search/photos`, {
+    params: {
+      query: searchQuery,
+      page,
+      per_page: perPage,
+      client_id: apiKey,
+    },
+  });
+};
