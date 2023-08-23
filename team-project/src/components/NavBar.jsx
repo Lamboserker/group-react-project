@@ -1,12 +1,23 @@
 import React, { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
-import "./NavBar.css";
 import PixPulseLogo from "../images/PULSE.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
+import "./NavBar.css";
+import { fetchPhotos } from "../UseFetch";
 
-const NavBar = () => {
+const NavBar = (setPhotosResponse) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState(null);
+
+  const loadPhotosByCategory = async (category) => {
+    try {
+      const response = await fetchPhotos(category, "landscape"); // Hier kannst du die gewünschte Orientierung festlegen
+      setPhotosResponse(response);
+    } catch (error) {
+      console.error("Error loading photos:", error);
+    }
+  };
 
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
@@ -24,7 +35,7 @@ const NavBar = () => {
         <div>
           <ul id="navbar">
             <li className={`dropdown ${dropdownOpen ? "clicked" : ""}`}>
-              <a className="dropbtn" onClick={toggleDropdown}  >
+              <a className="dropbtn" onClick={toggleDropdown}>
                 Categories
                 <span className={`arrow ${dropdownOpen ? "up" : "down"}`}>
                   <FontAwesomeIcon icon={faAngleDown} className="arrowDown" />
@@ -32,18 +43,52 @@ const NavBar = () => {
               </a>
               <div className="dropdown-content">
                 <div className="column left-content">
-                  <a href="/" rel="noopener noreferrer">Category 1</a>
-                  <a href="/" rel="noopener noreferrer">Category 2</a>
-                  <a href="/" rel="noopener noreferrer">Category 3</a>
-                  <a href="/" rel="noopener noreferrer">Category 1</a>
-                  <a href="/" rel="noopener noreferrer">Category 2</a>
-                  <a href="/" rel="noopener noreferrer">Category 3</a>
-                  <a href="/" rel="noopener noreferrer">Category 1</a>
-                  <a href="/" rel="noopener noreferrer">Category 2</a>
-                  <a href="/" rel="noopener noreferrer">Category 3</a>
+                  <a
+                    href="/"
+                    rel="noopener noreferrer"
+                    data-category="Category 1"
+                  >
+                    Category 1
+                  </a>
+                  <a href="/" rel="noopener noreferrer">
+                    Category 2
+                  </a>
+                  <a href="/" rel="noopener noreferrer">
+                    Category 3
+                  </a>
+                  <a href="/" rel="noopener noreferrer">
+                    Category 1
+                  </a>
+                  <a href="/" rel="noopener noreferrer">
+                    Category 2
+                  </a>
+                  <a href="/" rel="noopener noreferrer">
+                    Category 3
+                  </a>
+                  <a href="/" rel="noopener noreferrer">
+                    Category 1
+                  </a>
+                  <a href="/" rel="noopener noreferrer">
+                    Category 2
+                  </a>
+                  <a href="/" rel="noopener noreferrer">
+                    Category 3
+                  </a>
                 </div>
                 <div className="column right-content">
-                  <a href="/" rel="noopener noreferrer">Category 1</a>
+                  <a
+                    href="/"
+                    rel="noopener noreferrer"
+                    data-category="Category 1"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      const category = e.target.getAttribute("data-category");
+                      setSelectedCategory(category);
+                      loadPhotosByCategory(category);
+                    }}
+                  >
+                    Category 1
+                  </a>
                   <a href="/">Category 2</a>
                   <a href="/">Category 3</a>
                   <a href="/">Category 1</a>
@@ -59,7 +104,7 @@ const NavBar = () => {
               <Link to="/">Home</Link>
             </li>
             <li>
-            <Link to="/shop">Shop</Link>
+              <Link to="/shop">Shop</Link>
             </li>
             <li>
               <Link to="/blog">Blog</Link>
@@ -72,7 +117,7 @@ const NavBar = () => {
             </li>
           </ul>
         </div>
-      </section>      
+      </section>
 
       <Outlet />
     </>

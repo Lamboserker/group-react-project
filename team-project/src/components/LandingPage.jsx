@@ -1,5 +1,4 @@
 import React from "react";
-import './LandingPage.css';
 import Image1 from "../images/grid-img/01.jpg";
 import Image2 from "../images/grid-img/02.jpg";
 import Image3 from "../images/grid-img/03.jpg";
@@ -12,8 +11,10 @@ import Image9 from "../images/grid-img/09.jpg";
 import Image10 from "../images/grid-img/10.jpg";
 import Image11 from "../images/grid-img/11.jpg";
 import Image12 from "../images/grid-img/12.jpg";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+
+
+import './LandingPage.css';
+import SearchBar  from "./SearchBar";
 
 const LandingPage = () => {
   return (
@@ -26,10 +27,7 @@ const LandingPage = () => {
               Download astonishing images & photos for you or your business
             </h1>
           </div>
-          <div className="hero-input">
-            <input type="text" placeholder="Search for free photos" />
-            <FontAwesomeIcon icon={faMagnifyingGlass} className="search-icon" />
-          </div>
+          <SearchBar />
 
           <div className="popular">
             <p>Popular categories: </p>
