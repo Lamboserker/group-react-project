@@ -7,11 +7,7 @@
 
 body {
   width: 100%;
-  background-color: #1f1f1f;
-}
-
-.section-p1 {
-  padding: 40px 80px;
+  background-color: #000000ed;
 }
 
 /* Hero Section */
@@ -118,24 +114,25 @@ body {
 }
 
 /* Images grid */
-#news-waterfall {
-  column-count: 4;
-  column-gap: 20px;
-  word-wrap: break-word;
-}
+.grid {
+  padding: 120px 80px;
+} 
 
-#news {
-  color: black;
-  padding-left: 60px;
+
+#news-waterfall {
+  column-count: 3;
+  column-gap: 50px;
+  word-wrap: break-word;
+  width: 80%;
+  margin: auto;
 }
 
 #news-waterfall .box {
   display: inline-block;
   margin-bottom: 20px;
   width: 100%;
-  background-color: white;
   border-radius: 2px;
-  box-shadow: 3px 0px 20px 0px rgb(0 0 0 / 30%);
+  box-shadow: 3px 0px 20px 0px rgba(33, 33, 33, 0.658);
 }
 
 #news-waterfall .box img {
