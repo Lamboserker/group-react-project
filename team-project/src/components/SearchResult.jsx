@@ -1,4 +1,5 @@
 import React from 'react';
+import DownloadDrop from './DownloadDrop';
 
 const SearchResult = ({ images, handleDownload, onClose }) => {
   return (
@@ -6,8 +7,10 @@ const SearchResult = ({ images, handleDownload, onClose }) => {
       {images.map(image => (
         <div key={image.id} className="image-item">
           <img src={image.urls.small} alt={image.alt_description} />
+          <p>{image.alt_description}</p>
           <div>
-            <button onClick={() => handleDownload(image.urls.full)}>Download</button>
+            <button>Download</button>
+            <DownloadDrop handleDownload={handleDownload} image={image}/>
           </div>
         </div>
       ))}
