@@ -3,7 +3,7 @@ import { fetchSearchResults } from '../UseFetch';
 import SearchResult from './SearchResult';
 import Popup from 'reactjs-popup';
 
-function SearchBar() {
+function SearchBar({onClose}) {
   const [input, setInput] = useState("");
   const [searchQuery, setSearchQuery] = useState('');
   const [images, setImages] = useState([]);
@@ -75,6 +75,17 @@ function SearchBar() {
             </div>
           )}
         </Popup>
+        <div className="image-list">
+      {images.map(image => (
+        <div key={image.id} className="image-item">
+          <img src={image.urls.small} alt={image.alt_description} />
+          <div>
+            <button onClick={() => handleDownload(image.urls.full)}>Download</button>
+          </div>
+        </div>
+      ))}
+      <button className="close-button" onClick={onClose}>Close</button>
+    </div>
       </div>
     </div>
   );

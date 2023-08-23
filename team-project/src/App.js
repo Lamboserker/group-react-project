@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import NavBar from './components/NavBar'
 import LandingPage from './components/LandingPage';
-import SearchResult from "./components/SearchResult";
 import Test from './components/Test'
 
 function App() {
