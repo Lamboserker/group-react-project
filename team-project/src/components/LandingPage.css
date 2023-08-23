@@ -7,7 +7,7 @@
 
 body {
   width: 100%;
-  background-color: #000000ed;
+  background-color: #c8c6c6;
 }
 
 /* Hero Section */
@@ -132,7 +132,7 @@ body {
   margin-bottom: 20px;
   width: 100%;
   border-radius: 2px;
-  box-shadow: 3px 0px 20px 0px rgba(33, 33, 33, 0.658);
+  /* box-shadow: 3px 0px 20px 0px rgba(33, 33, 33, 0.658); */
 }
 
 #news-waterfall .box img {
