@@ -24,7 +24,7 @@ const NavBar = () => {
         <div>
           <ul id="navbar">
             <li className={`dropdown ${dropdownOpen ? "clicked" : ""}`}>
-              <a className="dropbtn" onClick={toggleDropdown} >
+              <a className="dropbtn" onClick={toggleDropdown}  >
                 Categories
                 <span className={`arrow ${dropdownOpen ? "up" : "down"}`}>
                   <FontAwesomeIcon icon={faAngleDown} className="arrowDown" />

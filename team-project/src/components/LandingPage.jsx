@@ -54,62 +54,62 @@ const LandingPage = () => {
       <section id="news-waterfall" className="grid">
       <div className="box">
         <div className="content">
-          <img src={Image1} alt="Image 1" />
+          <img src={Image1} alt="example1" />
         </div>
       </div>
       <div className="box">
         <div className="content">
-          <img src={Image2} alt="Image 2" />
+          <img src={Image2} alt="example2" />
         </div>
       </div>
       <div className="box">
         <div className="content">
-          <img src={Image3} alt="Image 3" />
+          <img src={Image3} alt="example3" />
         </div>
       </div>
       <div className="box">
         <div className="content">
-          <img src={Image4} alt="Image 1" />
+          <img src={Image4} alt="example4" />
         </div>
       </div>
       <div className="box">
         <div className="content">
-          <img src={Image5} alt="Image 1" />
+          <img src={Image5} alt="example5" />
         </div>
       </div>
       <div className="box">
         <div className="content">
-          <img src={Image6} alt="Image 1" />
+          <img src={Image6} alt="example6" />
         </div>
       </div>
       <div className="box">
         <div className="content">
-          <img src={Image7} alt="Image 1" />
+          <img src={Image7} alt="example7" />
         </div>
       </div>
       <div className="box">
         <div className="content">
-          <img src={Image8} alt="Image 1" />
+          <img src={Image8} alt="example8" />
         </div>
       </div>
       <div className="box">
         <div className="content">
-          <img src={Image9} alt="Image 1" />
+          <img src={Image9} alt="example9" />
         </div>
       </div>
       <div className="box">
         <div className="content">
-          <img src={Image10} alt="Image 1" />
+          <img src={Image10} alt="example10" />
         </div>
       </div>
       <div className="box">
         <div className="content">
-          <img src={Image11} alt="Image 1" />
+          <img src={Image11} alt="example11" />
         </div>
       </div>
       <div className="box">
         <div className="content">
-          <img src={Image12} alt="Image 1" />
+          <img src={Image12} alt="example12" />
         </div>
       </div>
     </section>
