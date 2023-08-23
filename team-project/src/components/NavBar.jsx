@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link, Outlet } from "react-router-dom";
 import "./NavBar.css";
 import PixPulseLogo from "../images/PULSE.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -15,7 +16,7 @@ const NavBar = () => {
     <>
       <section id="header">
         <div className="logo">
-          <a href="#">
+          <a href="/">
             <img src={PixPulseLogo} className="logo-img" alt="company logo" />
           </a>
         </div>
@@ -23,7 +24,7 @@ const NavBar = () => {
         <div>
           <ul id="navbar">
             <li className={`dropdown ${dropdownOpen ? "clicked" : ""}`}>
-              <a className="dropbtn" onClick={toggleDropdown}>
+              <a className="dropbtn" onClick={toggleDropdown} >
                 Categories
                 <span className={`arrow ${dropdownOpen ? "up" : "down"}`}>
                   <FontAwesomeIcon icon={faAngleDown} className="arrowDown" />
@@ -31,18 +32,18 @@ const NavBar = () => {
               </a>
               <div className="dropdown-content">
                 <div className="column left-content">
-                  <a href="/">Category 1</a>
-                  <a href="/">Category 2</a>
-                  <a href="/">Category 3</a>
-                  <a href="/">Category 1</a>
-                  <a href="/">Category 2</a>
-                  <a href="/">Category 3</a>
-                  <a href="/">Category 1</a>
-                  <a href="/">Category 2</a>
-                  <a href="/">Category 3</a>
+                  <a href="/" rel="noopener noreferrer">Category 1</a>
+                  <a href="/" rel="noopener noreferrer">Category 2</a>
+                  <a href="/" rel="noopener noreferrer">Category 3</a>
+                  <a href="/" rel="noopener noreferrer">Category 1</a>
+                  <a href="/" rel="noopener noreferrer">Category 2</a>
+                  <a href="/" rel="noopener noreferrer">Category 3</a>
+                  <a href="/" rel="noopener noreferrer">Category 1</a>
+                  <a href="/" rel="noopener noreferrer">Category 2</a>
+                  <a href="/" rel="noopener noreferrer">Category 3</a>
                 </div>
                 <div className="column right-content">
-                  <a href="/">Category 1</a>
+                  <a href="/" rel="noopener noreferrer">Category 1</a>
                   <a href="/">Category 2</a>
                   <a href="/">Category 3</a>
                   <a href="/">Category 1</a>
@@ -55,13 +56,13 @@ const NavBar = () => {
               </div>
             </li>
             <li>
-              <a>Home</a>
+              <Link to="/">Home</Link>
             </li>
             <li>
-              <a>Shop</a>
+            <Link to="/searchResult">Shop</Link>
             </li>
             <li>
-              <a>Blog</a>
+              <Link to="/test">Blog</Link>
             </li>
             <li className="left-border">
               <button className="upload-button">Upload a picture!</button>
@@ -71,9 +72,9 @@ const NavBar = () => {
             </li>
           </ul>
         </div>
-      </section>
+      </section>      
 
-      <section id="news-waterfall" class="section-p1"></section>
+      <Outlet />
     </>
   );
 };
