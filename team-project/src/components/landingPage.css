@@ -1,0 +1,165 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Cabin", sans-serif;
+}
+
+body {
+  width: 100%;
+  background-color: #1f1f1f;
+}
+
+.section-p1 {
+  padding: 40px 80px;
+}
+
+/* Hero Section */
+.hero {
+  background: linear-gradient(
+      200deg,
+      rgba(0, 0, 0, 0.9),
+      rgba(255, 255, 225, 0)
+    ),
+    url("../images/hero-banner.jpg");
+  height: 75vh;
+  background-size: cover;
+  background-position: top 25% right 0;
+  padding: 140px 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+}
+
+.all-hero {
+  margin-top: 50px;
+}
+
+.hero-content {
+  position: relative;
+  bottom: 40px;
+  color: #ffffff;
+  flex: 1;
+  max-width: 100%;
+}
+
+.hero-content p {
+  font-size: 1.5rem;
+  padding-bottom: 20px;
+}
+
+.hero-content h1 {
+  min-width: 120px;
+  width: 68%;
+  font-size: 3.5rem;
+}
+
+.hero-input {
+  position: relative;
+  display: inline-flex;
+  padding-bottom: 40px;
+}
+
+.hero-input input {
+  font-size: 1.5rem;
+  padding-left: 20px;
+  width: 50rem;
+  height: 4rem;
+  border-radius: 10px;
+  border: none;
+}
+
+.hero-input input:focus {
+  outline: none;
+}
+
+.hero-input input::placeholder {
+  color: #7d7d7d;
+  font-size: 1.5rem;
+}
+
+.search-icon {
+  font-size: 1.7rem;
+  padding: 10px;
+  position: absolute;
+  top: 31%;
+  right: 10px;
+  transform: translateY(-50%);
+  color: #3d3d3d;
+  cursor: pointer;
+}
+
+.popular {
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+}
+
+.popular p {
+  color: #fff;
+  font-size: 1.1rem;
+}
+
+.pop-categories {
+  display: flex;
+  list-style: none;
+  margin-left: 10px;
+}
+
+.pop-categories li a {
+  margin-right: 10px;
+  font-weight: 100;
+  color: #dad7d7;
+}
+
+.pop-categories li a:hover {
+  text-decoration: none;
+}
+
+/* Images grid */
+#news-waterfall {
+  column-count: 4;
+  column-gap: 20px;
+  word-wrap: break-word;
+}
+
+#news {
+  color: black;
+  padding-left: 60px;
+}
+
+#news-waterfall .box {
+  display: inline-block;
+  margin-bottom: 20px;
+  width: 100%;
+  background-color: white;
+  border-radius: 2px;
+  box-shadow: 3px 0px 20px 0px rgb(0 0 0 / 30%);
+}
+
+#news-waterfall .box img {
+  width: 100%;
+}
+
+#news-waterfall .box .content h4 {
+  text-align: left;
+  margin-left: 10px;
+  margin-bottom: -10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  color: #000;
+}
+
+#news-waterfall .box .content p {
+  text-align: left;
+  margin-left: 10px;
+  margin-bottom: -10px;
+}
+
+#news-waterfall .box .content a {
+  text-align: end;
+  text-decoration: none;
+  margin: 10px;
+  color: #000;
+}

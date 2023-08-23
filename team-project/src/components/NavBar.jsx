@@ -73,9 +73,7 @@ const NavBar = () => {
         </div>
       </section>
 
-      <section id="hero">
-      <h1>MORE THAN 10,000 NEW RECORDS EVERY WEEK</h1>
-    </section>
+      <section id="news-waterfall" class="section-p1"></section>
     </>
   );
 };

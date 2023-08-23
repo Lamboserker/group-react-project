@@ -7,26 +7,29 @@
 
 body {
   width: 100%;
+  background-color: #1f1f1f;
 }
 
+/* Navigation bar */
 .logo-img {
   width: 120px;
 }
 
 #header {
+  position: absolute;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 20px 80px;
   max-height: 120px;
-  background-color: #000000;
+  background-color: transparent;
 }
 
 #navbar {
-  background-color: #000;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: end;
 }
 
 #navbar li {
@@ -38,27 +41,28 @@ body {
 #navbar li a {
   text-decoration: none;
   font-size: 18px;
-  color: #fffefe;
+  color: #dad7d7;
   transition: 0.3s ease;
 }
 
 .login-button {
-  background-color: #449e29;
-  color: white;
+  background-color: #329713;
+  color: #fff;
   border: none;
   border-radius: 5px;
   padding: 10px 20px;
   cursor: pointer;
   font-size: 16px;
+  transition: 0.5s ease;
 }
 
 .login-button:hover {
-  background-color: #449e29af;
+  background-color: #34d503;
 }
 
 .upload-button {
   background-color: transparent;
-  color: #fffefe;
+  color: #fff;
   border: 1px solid #fff;
   border-radius: 5px;
   padding: 10px 20px;
@@ -67,7 +71,7 @@ body {
 }
 
 .upload-button:hover {
-  background-color: #fffefe;
+  background-color: #fff;
 }
 
 .upload-button:hover {
@@ -75,7 +79,7 @@ body {
 }
 
 .left-border {
-  border-left: solid 2px #fffefe;
+  border-left: solid 2px #fff;
 }
 
 .dropbtn {
@@ -99,46 +103,30 @@ body {
 }
 
 .column a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 .arrow {
   font-size: 10px;
-  margin-left: 8px; 
+  margin-left: 8px;
   vertical-align: middle;
 }
 
 .dropdown.clicked .dropdown-content {
   display: none;
-  margin-top: 3.1rem;
-  left:-100px;
+  margin-top: 1rem;
+  left: -90px;
+  border-radius: 5px;
   position: absolute;
   background-color: #302c2c;
   min-width: 360px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
-  display: grid; 
-  grid-template-columns: 1fr 1fr; 
-  grid-gap: 20px; 
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
 }
 
 .column {
-    text-align: center;
-}
-/* Hero Section */
-#hero {
-  background: linear-gradient(140deg, rgba(0, 0, 0, 0.9), rgba(255, 255, 225, 0));
-  height: 60vh;
-  width: 100%;
-  background-size: cover;
-  background-position: top 25% right 0;
-  padding: 100px 80px;
-}
-
-#hero h4 {
-  padding-bottom: 15px;
-}
-
-#hero h1 {
-  color: #FFF;
+  text-align: center;
 }
