@@ -24,7 +24,7 @@ const NavBar = () => {
         <div>
           <ul id="navbar">
             <li className={`dropdown ${dropdownOpen ? "clicked" : ""}`}>
-              <a className="dropbtn" onClick={toggleDropdown} >
+              <a className="dropbtn" onClick={toggleDropdown}  >
                 Categories
                 <span className={`arrow ${dropdownOpen ? "up" : "down"}`}>
                   <FontAwesomeIcon icon={faAngleDown} className="arrowDown" />
@@ -59,10 +59,10 @@ const NavBar = () => {
               <Link to="/">Home</Link>
             </li>
             <li>
-            <Link to="/searchResults">Shop</Link>
+            <Link to="/shop">Shop</Link>
             </li>
             <li>
-              <Link to="/test">Blog</Link>
+              <Link to="/blog">Blog</Link>
             </li>
             <li className="left-border">
               <button className="upload-button">Upload a picture!</button>
@@ -74,10 +74,7 @@ const NavBar = () => {
         </div>
       </section>      
 
-      <section id="hero">
-      <h1>MORE THAN 10,000 NEW RECORDS EVERY WEEK</h1>
       <Outlet />
-    </section>
     </>
   );
 };

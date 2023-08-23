@@ -1,7 +1,10 @@
 import React from 'react';
 import DownloadDrop from './DownloadDrop';
 
-const SearchResult = ({ images, handleDownload, onClose }) => {
+import React from 'react'
+
+const SearchResult = () => {
+  
   return (
     <div className="image-list">
       {images.map(image => (
@@ -15,8 +18,10 @@ const SearchResult = ({ images, handleDownload, onClose }) => {
         </div>
       ))}
       <button className="close-button" onClick={onClose}>Close</button>
+    <div>
+      <img src='https://picsum.photos/id/1/500/333' alt=''></img>
     </div>
-  );
+  )
 }
 
-export default SearchResult;
+export default SearchResult

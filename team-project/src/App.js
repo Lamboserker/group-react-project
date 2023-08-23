@@ -3,8 +3,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import NavBar from './components/NavBar'
 import LandingPage from './components/LandingPage';
-import SearchResult from "./components/SearchResult";
-import Test from './components/Test'
+import Blog from './components/Blog';
+import Shop from './components/Shop';
 
 function App() {
   return (
@@ -13,8 +13,8 @@ function App() {
         <Routes>
           <Route path="/" element={<NavBar />}>
             <Route index element={<LandingPage />} />
-            <Route path="blogs" element={<LandingPage />} />
-            <Route path="/test" element={<Test />} />
+            <Route path="blog" element={<Blog />} />
+            <Route path="shop" element={<Shop />} />
             {/*<Route path="*" element={PageNotFound} />*/}
           </Route>
         </Routes>
