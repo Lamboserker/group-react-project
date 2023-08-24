@@ -1,6 +1,7 @@
 import React from "react";
 import "./LandingPage.css";
 import ImageGrid from "./ImageGrid";
+import SearchBar from "./SearchBar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
