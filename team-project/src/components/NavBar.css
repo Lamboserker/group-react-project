@@ -71,11 +71,9 @@ body {
 
 .upload-button:hover {
   background-color: #fff;
-}
-
-.upload-button:hover {
   color: #000;
 }
+
 
 .left-border {
   border-left: solid 2px #fff;

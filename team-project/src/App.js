@@ -8,6 +8,7 @@ import Shop from "./components/Shop";
 import SearchResult from "./components/SearchResult";
 import SearchProvider from "./Context/SearchProvider";
 
+
 function App() {
   return (
     <div className="App">
