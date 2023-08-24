@@ -6,6 +6,7 @@ import LandingPage from './components/LandingPage';
 import Blog from './components/Blog';
 import Shop from './components/Shop';
 
+
 function App() {
   return (
     <div className="App">
