@@ -15,10 +15,7 @@ const LandingPage = () => {
               Download astonishing images & photos for you or your business
             </h1>
           </div>
-          <div className="hero-input">
-            <input type="text" placeholder="Search for free photos" />
-            <FontAwesomeIcon icon={faMagnifyingGlass} className="search-icon" />
-          </div>
+          <SearchBar />
 
           <div className="popular">
             <p>Popular categories: </p>
