@@ -1,11 +1,15 @@
-import axios from 'axios';
+import axios from "axios";
 import { createApi } from "unsplash-js";
 
 const apiKey = process.env.REACT_APP_API_KEY;
 const apiUrl = process.env.REACT_APP_API_URL;
 
 // Function to fetch search results
-export const fetchSearchResults = async (searchQuery, page = 1, perPage = 10) => {
+export const fetchSearchResults = async (
+  searchQuery,
+  page = 1,
+  perPage = 1
+) => {
   try {
     const response = await axios.get(`${apiUrl}/search/photos`, {
       params: {
@@ -15,10 +19,10 @@ export const fetchSearchResults = async (searchQuery, page = 1, perPage = 10) =>
         client_id: apiKey,
       },
     });
+    console.log(response);
     return response.data;
   } catch (error) {
-    // Hier kannst du den Fehler behandeln oder weitergeben
-    console.error('Error fetching search results:', error);
+    console.error("Error fetching search results:", error);
     throw error;
   }
 };

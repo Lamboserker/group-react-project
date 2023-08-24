@@ -76,19 +76,7 @@ const NavBar = (setPhotosResponse) => {
                   </a>
                 </div>
                 <div className="column right-content">
-                  <a
-                    href="/"
-                    rel="noopener noreferrer"
-                    data-category="Category 1"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      const category = e.target.getAttribute("data-category");
-                      setSelectedCategory(category);
-                      loadPhotosByCategory(category);
-                    }}
-                  >
-                    Category 1
-                  </a>
+                  <a href="/">Category 1</a>
                   <a href="/">Category 2</a>
                   <a href="/">Category 3</a>
                   <a href="/">Category 1</a>
