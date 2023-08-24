@@ -7,7 +7,7 @@
 
 body {
   width: 100%;
-  background-color: #000000ed;
+  background-color: #bcbcbc3a;
 }
 
 /* Hero Section */
@@ -113,50 +113,3 @@ body {
   text-decoration: none;
 }
 
-/* Images grid */
-.grid {
-  padding: 120px 80px;
-} 
-
-
-#news-waterfall {
-  column-count: 3;
-  column-gap: 50px;
-  word-wrap: break-word;
-  width: 80%;
-  margin: auto;
-}
-
-#news-waterfall .box {
-  display: inline-block;
-  margin-bottom: 20px;
-  width: 100%;
-  border-radius: 2px;
-  box-shadow: 3px 0px 20px 0px rgba(33, 33, 33, 0.658);
-}
-
-#news-waterfall .box img {
-  width: 100%;
-}
-
-#news-waterfall .box .content h4 {
-  text-align: left;
-  margin-left: 10px;
-  margin-bottom: -10px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  color: #000;
-}
-
-#news-waterfall .box .content p {
-  text-align: left;
-  margin-left: 10px;
-  margin-bottom: -10px;
-}
-
-#news-waterfall .box .content a {
-  text-align: end;
-  text-decoration: none;
-  margin: 10px;
-  color: #000;
-}

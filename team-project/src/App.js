@@ -6,6 +6,7 @@ import LandingPage from './components/LandingPage';
 import Test from './components/Test'
 import SearchResult from "./components/SearchResult";
 
+
 function App() {
   return (
     <div className="App">
