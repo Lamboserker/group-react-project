@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from 'react';
+import ModalComponent from './ModalComponent';
 import Image1 from "../images/grid-img/01.jpg";
 import Image2 from "../images/grid-img/02.jpg";
 import Image3 from "../images/grid-img/03.jpg";
@@ -8,12 +9,25 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faArrowDown } from "@fortawesome/free-solid-svg-icons";
 
 const ImageGrid = () => {
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState('');
+
+  const openModal = (imageSrc) => {
+    setSelectedImage(imageSrc);
+    setModalIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+    setSelectedImage('');
+  };
+
   return (
     <>
       <section id="news-waterfall" className="grid">
         <div className="box">
           <div className="content">
-            <img src={Image1} alt="Image 1" />
+            <img src={Image1} alt="Image 1" onClick={openModal} />
             <div className="button-top">
               <FontAwesomeIcon icon={faHeart} className="icon heart-icon" />
             </div>
@@ -173,6 +187,13 @@ const ImageGrid = () => {
       <div className="showMore">
         <button className="showMoreButton"> More Pictures </button>
       </div>
+      <div>
+      <ModalComponent
+        isOpen={modalIsOpen}
+        imageSrc={selectedImage}
+        onClose={closeModal}
+      />
+    </div>
     </>
   );
 };
