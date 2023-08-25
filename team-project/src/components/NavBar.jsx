@@ -1,22 +1,37 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link, Outlet } from "react-router-dom";
+import {useNavigate} from 'react-router-dom';
 import PixPulseLogo from "../images/PULSE.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import "./NavBar.css";
-import { fetchPhotos } from "../UseFetch";
+import { fetchCategories } from "../UseFetch";
+import SearchContext from "../Context/SearchContext";
+import CategoryResult from "./CategoryResult";
 
-const NavBar = (setPhotosResponse) => {
+const NavBar = () => {
+
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState(null);
+  const { searchResults,setSearchResults} = useContext(SearchContext);
+  const [searchQuery, setSearchQuery] = useState("");
+  
+  const navigate = useNavigate()
 
-  const loadPhotosByCategory = async (category) => {
-    try {
-      const response = await fetchPhotos(category, "landscape"); // Hier kannst du die gewünschte Orientierung festlegen
-      setPhotosResponse(response);
-    } catch (error) {
-      console.error("Error loading photos:", error);
+  useEffect(() => {
+    if (searchQuery !== "") {
+      fetchCategories(searchQuery)
+        .then((response) => {
+          setSearchResults(response.results);
+          console.log(response);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
     }
+  }, [searchQuery, setSearchResults]);
+
+  const renderDataOnClick = (e) => {
+  navigate('/categoryresult')
   };
 
   const toggleDropdown = () => {
@@ -76,7 +91,7 @@ const NavBar = (setPhotosResponse) => {
                   </a>
                 </div>
                 <div className="column right-content">
-                  <a href="/">Category 1</a>
+                  <button onClick={renderDataOnClick} >Category 1</button>
                   <a href="/">Category 2</a>
                   <a href="/">Category 3</a>
                   <a href="/">Category 1</a>
@@ -108,6 +123,7 @@ const NavBar = (setPhotosResponse) => {
       </section>
 
       <Outlet />
+      <CategoryResult/>
     </>
   );
 };

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
+import {useNavigate} from 'react-router-dom';
 import { fetchSearchResults } from "../UseFetch";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
@@ -8,10 +8,10 @@ import SearchResult from "./SearchResult";
 import SearchContext  from "../Context/SearchContext";
 
 function SearchBar() {
-  const [input, setInput] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
-  const [showResults, setShowResults] = useState(false);
-  const { setSearchResults } = useContext(SearchContext);
+  const { setSearchResults,searchText,setSearchText } = useContext(SearchContext);
+
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (searchQuery !== "") {
@@ -24,11 +24,10 @@ function SearchBar() {
           console.error(error);
         });
     }
-  }, [searchQuery]);
+  }, [searchQuery, setSearchResults]);
 
   const renderDataOnClick = (e) => {
-    setSearchQuery(input);
-    setShowResults(true);
+  navigate('/searchresult')
   };
 
   return (
@@ -37,10 +36,10 @@ function SearchBar() {
         <input
           type="text"
           placeholder="Search for photos"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
         />
-        <button>
+        <button style={{border: "none"}}>
           <FontAwesomeIcon
             icon={faMagnifyingGlass}
             className="search-icon"
