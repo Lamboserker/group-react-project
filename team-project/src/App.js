@@ -7,6 +7,7 @@ import Blog from "./components/Blog";
 import Shop from "./components/Shop";
 import SearchResult from "./components/SearchResult";
 import SearchProvider from "./Context/SearchProvider";
+import CategoryResult from "./components/CategoryResult";
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
               <Route path="blog" element={<Blog />} />
               <Route path="shop" element={<Shop />} />
               <Route path="SearchResult" element={<SearchResult />} />
+              <Route path="CategoryResult" element={<CategoryResult />} />
 
               {/*<Route path="*" element={PageNotFound} />*/}
             </Route>
