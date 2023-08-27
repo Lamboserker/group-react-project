@@ -26,9 +26,9 @@ function SearchBar() {
     }
   }, [searchQuery, setSearchResults]);
 
-  const renderDataOnClick = (e) => {
-  navigate('/searchresult')
-  };
+  // const renderDataOnClick = (e) => {
+  // navigate('/searchresult')
+  // };
 
   return (
     <>
@@ -43,12 +43,12 @@ function SearchBar() {
           <FontAwesomeIcon
             icon={faMagnifyingGlass}
             className="search-icon"
-            onClick={renderDataOnClick}
+            // onClick={renderDataOnClick}
           ></FontAwesomeIcon>
         </button>
       </div>
 
-      <SearchResult />
+      {/* <SearchResult /> */}
     </>
   );
 }

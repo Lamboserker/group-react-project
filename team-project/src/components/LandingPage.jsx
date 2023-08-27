@@ -3,11 +3,19 @@ import "./LandingPage.css";
 import ImageGrid from "./ImageGrid";
 import SearchBar from "./SearchBar";
 
+// const categoryHeroImages = {
+//   Nature: "url_to_nature_hero_image",
+//   Wallpaper: "url_to_wallpaper_hero_image",
+//   Cities: "url_to_cities_hero_image",
+//   Architecture: "url_to_architecture_hero_image",
+// };
 
-const LandingPage = () => {
+
+const LandingPage = (/*category*/) => {
+  // const heroImage = categoryHeroImages[category] || "default_hero_image_url";
   return (
     <>
-      <section className="hero">
+      <section className="hero" /*style={{ backgroundImage: `url(${heroImage})` }}*/>
         <div className="all-hero">
           <div className="hero-content">
             <p>Free high resolution images</p>
