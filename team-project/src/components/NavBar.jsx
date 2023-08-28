@@ -59,10 +59,10 @@ const NavBar = () => {
               <Link to="/">Home</Link>
             </li>
             <li>
-            <Link to="/searchResult">Shop</Link>
+            <Link to="/shop">Shop</Link>
             </li>
             <li>
-              <Link to="/test">Blog</Link>
+              <Link to="/blog">Blog</Link>
             </li>
             <li className="left-border">
               <button className="upload-button">Upload a picture!</button>
