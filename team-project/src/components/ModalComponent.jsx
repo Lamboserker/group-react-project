@@ -1,174 +1,566 @@
-.ReactModal__Overlay {
-  background-color: rgba(0, 0, 0, 0.7);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-}
-.ReactModal__Content {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 90%;
-  height: 50rem;
-  background: #fff;
-  padding: 20px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-.modal-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  height: 100%;
-  width: 100%;
-  overflow-y: scroll;
-}
-.navbar-pop {
-  background-color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 20px;
-  position: sticky;
-  top: 0;
-  z-index: 1;
-  width: 100%;
-  margin-bottom: 30px;
-}
-.navbar-pop a {
-  text-decoration: none;
-  color: black;
-}
-.buttons-pop {
-  display: flex;
-}
-.artist-info {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  font-size: 20px;
-}
-.img-artist {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  overflow: hidden;
-  flex-shrink: 0;
-}
-.img-artist img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 50%;
-}
-.image-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-}
-.ReactModal__Content img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: cover;
-}
-.ReactModal__Content .close-button {
-  margin-top: 10px;
-  padding: 5px 10px;
-  font-size: 35px;
-  color: rgb(143, 143, 143);
-  background-color: transparent;
-  border: none;
-}
-.close-button {
-  position: absolute;
-  top: -22px;
-  left: -80px;
-  cursor: pointer;
-}
-#btn-download-pop {
-  background-color: #329713;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: 0.5s ease;
-}
-#btn-download-pop:hover {
-  background-color: #34d503;
-}
-.heart-pop {
-  border: none;
-  margin-right: 15px;
-  border-radius: 10%;
-  padding: 8px;
-}
-.heart-pop .heart-icon-pop {
-  font-size: 20px;
-  cursor: pointer;
-  color: white;
-  background-color: rgb(242, 239, 239);
-  margin: 5px;
-  color: gray;
-  transition: 0.3s linear;
-}
-.heart-icon-pop:hover {
-  color: rgba(255, 0, 0, 0.841);
-}
-.additional-content {
-  margin-top: 20px;
-  width: 100%;
-  padding: 10px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  color: gray;
-}
-.column-pop {
-  display: flex;
-  align-items: center;
-  flex: 1;
-  padding: 10px;
-  border-radius: 5px;
-}
-.column-pop p {
-  font-size: 16px;
-  margin-left: 10px;
-}
-.categories-pop ul {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  align-items: center;
-  margin: 30px 0;
-}
-.categories-pop li {
-  list-style: none;
-  padding: 5px 10px;
-  background-color: rgb(229, 229, 229);
-  border-radius: 5px;
-  cursor: pointer;
-  transition: 0.1s linear;
-}
-.categories-pop li:hover {
-  background-color: rgb(196, 196, 196);
-  color: #464646;
-}
-.related-pop {
-  display: flex;
-  width: 100%;
-  align-items: center;
-  padding: 0 70px ; 
-  margin-bottom: -30px;
-  margin-top: 30px;
-  text-align: left;
-}
+import React, { useContext, useState, useEffect } from "react";
+import Modal from "react-modal";
+import "./ModalComponent.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faHeart,
+  faXmark,
+  faLocationDot,
+  faCalendar,
+  faShield,
+  faArrowDown,
+} from "@fortawesome/free-solid-svg-icons";
+import SearchContext from "../Context/SearchContext";
+import { fetchSearchResults } from "../UseFetch";
+
+
+const ImageModal = ({ isOpen, onClose }) => {
+  const { searchResults, setSearchResults, searchText } =
+    useContext(SearchContext);
+
+  useEffect(() => {
+    console.log("use effect here");
+    if (searchText) {
+      try {
+        fetchSearchResults(searchText)
+          .then((response) => {
+            setSearchResults(response.results);
+            console.log(response);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  }, [searchText, setSearchResults]);
+
+  console.log("Search results is rendering");
+  return (
+    <div>
+      {searchResults.map((result) => (
+        <div key={result.id}>
+          <Modal
+            isOpen={isOpen}
+            onRequestClose={onClose}
+            contentLabel="Image Modal"
+            className="ReactModal__Content"
+            overlayClassName="ReactModal__Overlay"
+          >
+            <div className="modal-container">
+              <div className="navbar-pop">
+                <a href="/">
+                  <div className="artist-info">
+                    <div className="img-artist">
+                      <img src={result.user.profile_image.small} alt="/" />
+                    </div>
+                    <div className="des-artist">
+                      <p>{result.user.name}</p>
+                    </div>
+                  </div>
+                </a>
+
+                <div className="buttons-pop">
+                  <button className="heart-pop">
+                    <FontAwesomeIcon
+                      icon={faHeart}
+                      className="heart-icon-pop"
+                    />
+                  </button>
+                  <button id="btn-download-pop">Free Download</button>
+                </div>
+              </div>
+
+              <div className="image-container">
+                <img
+                  src={result.urls.regular}
+                  alt={result.alt_description}
+                  className="modal-image"
+                />
+              </div>
+              <div className="additional-content">
+                <div className="column-pop">
+                  <FontAwesomeIcon icon={faLocationDot} className="des-icon" />
+                  <p>{result.user.location}</p>
+                </div>
+
+                <div className="column-pop">
+                  <FontAwesomeIcon icon={faCalendar} className="des-icon" />
+                  <p>{result.created_at}</p>
+                </div>
+
+                <div className="column-pop">
+                  <FontAwesomeIcon icon={faShield} className="des-icon" />
+                  <p>Save to download.</p>
+                </div>
+                <div className="categories-pop">
+                  <ul>
+                    <li>High definition images</li>
+                    <li>Nature</li>
+                    <li>Architecture and design</li>
+                    <li>Wallpaper</li>
+                    <li>Movies</li>
+                    <li>Street Photography</li>
+                    <li>Most liked pictures</li>
+                    <li>Flowers</li>
+                    <li>3D wallpaper</li>
+                    <li>Texture and pattern</li>
+                    <li>Experimental</li>
+                    <li>Animals</li>
+                  </ul>
+                </div>
+              </div>
+              <div className="related-pop">
+                <h3>Related images</h3>
+              </div>
+              <div id="news-waterfall" className="grid">
+                <div className="box">
+                  <div className="content">
+                    <img src="/" alt=" 1" />
+                    <div className="button-top">
+                      <FontAwesomeIcon
+                        icon={faHeart}
+                        className="icon heart-icon"
+                      />
+                    </div>
+                    <div className="button-bottom">
+                      <FontAwesomeIcon
+                        icon={faArrowDown}
+                        className="icon download-icon"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="box">
+                  <div className="content">
+                    <img src="/" alt=" 2" />
+                    <div className="button-top">
+                      <FontAwesomeIcon
+                        icon={faHeart}
+                        className="icon heart-icon"
+                      />
+                    </div>
+                    <div className="button-bottom">
+                      <FontAwesomeIcon
+                        icon={faArrowDown}
+                        className="icon download-icon"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="box">
+                  <div className="content">
+                    <img src="/" alt=" 3" />
+                    <div className="button-top">
+                      <FontAwesomeIcon
+                        icon={faHeart}
+                        className="icon heart-icon"
+                      />
+                    </div>
+                    <div className="button-bottom">
+                      <FontAwesomeIcon
+                        icon={faArrowDown}
+                        className="icon download-icon"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="box">
+                  <div className="content">
+                    <img src="/"alt=" 4" />
+                    <div className="button-top">
+                      <a>
+                        <FontAwesomeIcon
+                          icon={faHeart}
+                          className="icon heart-icon"
+                        />
+                      </a>
+                    </div>
+                    <div className="button-bottom">
+                      <a>
+                        <FontAwesomeIcon
+                          icon={faArrowDown}
+                          className="icon download-icon"
+                        />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div className="box">
+                  <div className="content">
+                    <img src="/" alt=" 3" />
+                    <div className="button-top">
+                      <FontAwesomeIcon
+                        icon={faHeart}
+                        className="icon heart-icon"
+                      />
+                    </div>
+                    <div className="button-bottom">
+                      <FontAwesomeIcon
+                        icon={faArrowDown}
+                        className="icon download-icon"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="box">
+                  <div className="content">
+                    <img src="/" alt=" 2" />
+                    <div className="button-top">
+                      <FontAwesomeIcon
+                        icon={faHeart}
+                        className="icon heart-icon"
+                      />
+                    </div>
+                    <div className="button-bottom">
+                      <FontAwesomeIcon
+                        icon={faArrowDown}
+                        className="icon download-icon"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="box">
+                  <div className="content">
+                    <img src="/" alt=" 1" />
+                    <div className="button-top">
+                      <FontAwesomeIcon
+                        icon={faHeart}
+                        className="icon heart-icon"
+                      />
+                    </div>
+                    <div className="button-bottom">
+                      <FontAwesomeIcon
+                        icon={faArrowDown}
+                        className="icon download-icon"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="box">
+                  <div className="content">
+                    <img src="/" alt=" 4" />
+                    <div className="button-top">
+                      <FontAwesomeIcon
+                        icon={faHeart}
+                        className="icon heart-icon"
+                      />
+                    </div>
+                    <div className="button-bottom">
+                      <FontAwesomeIcon
+                        icon={faArrowDown}
+                        className="icon download-icon"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="box">
+                  <div className="content">
+                    <img src="/" alt=" 1" />
+                    <div className="button-top">
+                      <FontAwesomeIcon
+                        icon={faHeart}
+                        className="icon heart-icon"
+                      />
+                    </div>
+                    <div className="button-bottom">
+                      <FontAwesomeIcon
+                        icon={faArrowDown}
+                        className="icon download-icon"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="box">
+                  <div className="content">
+                    <img src="/" alt="2" />
+                    <div className="button-top">
+                      <FontAwesomeIcon
+                        icon={faHeart}
+                        className="icon heart-icon"
+                      />
+                    </div>
+                    <div className="button-bottom">
+                      <FontAwesomeIcon
+                        icon={faArrowDown}
+                        className="icon download-icon"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="box">
+                  <div className="content">
+                    <img src="/" alt=" 2" />
+                    <div className="button-top">
+                      <FontAwesomeIcon
+                        icon={faHeart}
+                        className="icon heart-icon"
+                      />
+                    </div>
+                    <div className="button-bottom">
+                      <FontAwesomeIcon
+                        icon={faArrowDown}
+                        className="icon download-icon"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="showMore">
+                <button className="showMoreButton"> More Pictures </button>
+              </div>
+              <button onClick={onClose} className="close-button">
+                <FontAwesomeIcon icon={faXmark} />
+              </button>
+            </div>
+          </Modal>
+        </div>
+      ))}
+    </div>
+  );
+};
+export default ImageModal;
+
+//   return (
+//     <div>
+//     {searchResults.map((result) => (
+//       <div key={result.id}>
+//     <Modal
+//       isOpen={isOpen}
+//       onRequestClose={onClose}
+//       contentLabel="Image Modal"
+//       className="ReactModal__Content"
+//       overlayClassName="ReactModal__Overlay"
+//     >
+//       <div className="modal-container">
+//         <div className="navbar-pop">
+//           <a href="/">
+//             <div className="artist-info">
+//               <div className="img-artist">
+//                  <img
+//                 src={result.urls.regular}
+//                 alt={result.alt_description}
+//                 className="modal-image"
+//               />
+//               </div>
+//               <div className="des-artist">
+//                 <p>Alejandro Keegan</p>
+//               </div>
+//             </div>
+//           </a>
+//           <div className="buttons-pop">
+//             <button className="heart-pop">
+//               <FontAwesomeIcon icon={faHeart} className="heart-icon-pop" />
+//             </button>
+//             <button id="btn-download-pop">Free Download</button>
+//           </div>
+//         </div>
+//         <div className="image-container">
+//           <img src={Image1} alt="Clicked Image" className="modal-image" />
+//         </div>
+//         <div className="additional-content">
+//           <div className="column-pop">
+//             <FontAwesomeIcon icon={faLocationDot} className="des-icon" />
+//             <p>Paris, France.</p>
+//           </div>
+//           <div className="column-pop">
+//             <FontAwesomeIcon icon={faCalendar} className="des-icon" />
+//             <p>An hour ago.</p>
+//           </div>
+//           <div className="column-pop">
+//             <FontAwesomeIcon icon={faShield} className="des-icon" />
+//             <p>Save to download.</p>
+//           </div>
+//           <div className="categories-pop">
+//             <ul>
+//               <li>High definition images</li>
+//               <li>Nature</li>
+//               <li>Architecture and design</li>
+//               <li>Wallpaper</li>
+//               <li>Movies</li>
+//               <li>Street Photography</li>
+//               <li>Most liked pictures</li>
+//               <li>Flowers</li>
+//               <li>3D wallpaper</li>
+//               <li>Texture and pattern</li>
+//               <li>Experimental</li>
+//               <li>Animals</li>
+//             </ul>
+//           </div>
+//         </div>
+//         <div className="related-pop">
+//           <h3>Related images</h3>
+//         </div>
+//         <div id="news-waterfall" className="grid">
+//           <div className="box">
+//             <div className="content">
+//               <img src={Image1} alt="Image 1" />
+//               <div className="button-top">
+//                 <FontAwesomeIcon icon={faHeart} className="icon heart-icon" />
+//               </div>
+//               <div className="button-bottom">
+//                 <FontAwesomeIcon
+//                   icon={faArrowDown}
+//                   className="icon download-icon"
+//                 />
+//               </div>
+//             </div>
+//           </div>
+//           <div className="box">
+//             <div className="content">
+//               <img src={Image2} alt="Image 2" />
+//               <div className="button-top">
+//                 <FontAwesomeIcon icon={faHeart} className="icon heart-icon" />
+//               </div>
+//               <div className="button-bottom">
+//                 <FontAwesomeIcon
+//                   icon={faArrowDown}
+//                   className="icon download-icon"
+//                 />
+//               </div>
+//             </div>
+//           </div>
+//           <div className="box">
+//             <div className="content">
+//               <img src={Image3} alt="Image 3" />
+//               <div className="button-top">
+//                 <FontAwesomeIcon icon={faHeart} className="icon heart-icon" />
+//               </div>
+//               <div className="button-bottom">
+//                 <FontAwesomeIcon
+//                   icon={faArrowDown}
+//                   className="icon download-icon"
+//                 />
+//               </div>
+//             </div>
+//           </div>
+//           <div className="box">
+//             <div className="content">
+//               <img src={Image4} alt="Image 4" />
+//               <div className="button-top">
+//                 <a>
+//                   <FontAwesomeIcon icon={faHeart} className="icon heart-icon" />
+//                 </a>
+//               </div>
+//               <div className="button-bottom">
+//                 <a>
+//                   <FontAwesomeIcon
+//                     icon={faArrowDown}
+//                     className="icon download-icon"
+//                   />
+//                 </a>
+//               </div>
+//             </div>
+//           </div>
+//           <div className="box">
+//             <div className="content">
+//               <img src={Image3} alt="Image 3" />
+//               <div className="button-top">
+//                 <FontAwesomeIcon icon={faHeart} className="icon heart-icon" />
+//               </div>
+//               <div className="button-bottom">
+//                 <FontAwesomeIcon
+//                   icon={faArrowDown}
+//                   className="icon download-icon"
+//                 />
+//               </div>
+//             </div>
+//           </div>
+//           <div className="box">
+//             <div className="content">
+//               <img src={Image2} alt="Image 2" />
+//               <div className="button-top">
+//                 <FontAwesomeIcon icon={faHeart} className="icon heart-icon" />
+//               </div>
+//               <div className="button-bottom">
+//                 <FontAwesomeIcon
+//                   icon={faArrowDown}
+//                   className="icon download-icon"
+//                 />
+//               </div>
+//             </div>
+//           </div>
+//           <div className="box">
+//             <div className="content">
+//               <img src={Image1} alt="Image 1" />
+//               <div className="button-top">
+//                 <FontAwesomeIcon icon={faHeart} className="icon heart-icon" />
+//               </div>
+//               <div className="button-bottom">
+//                 <FontAwesomeIcon
+//                   icon={faArrowDown}
+//                   className="icon download-icon"
+//                 />
+//               </div>
+//             </div>
+//           </div>
+//           <div className="box">
+//             <div className="content">
+//               <img src={Image4} alt="Image 4" />
+//               <div className="button-top">
+//                 <FontAwesomeIcon icon={faHeart} className="icon heart-icon" />
+//               </div>
+//               <div className="button-bottom">
+//                 <FontAwesomeIcon
+//                   icon={faArrowDown}
+//                   className="icon download-icon"
+//                 />
+//               </div>
+//             </div>
+//           </div>
+//           <div className="box">
+//             <div className="content">
+//               <img src={Image1} alt="Image 1" />
+//               <div className="button-top">
+//                 <FontAwesomeIcon icon={faHeart} className="icon heart-icon" />
+//               </div>
+//               <div className="button-bottom">
+//                 <FontAwesomeIcon
+//                   icon={faArrowDown}
+//                   className="icon download-icon"
+//                 />
+//               </div>
+//             </div>
+//           </div>
+//           <div className="box">
+//             <div className="content">
+//               <img src={Image2} alt="Image 2" />
+//               <div className="button-top">
+//                 <FontAwesomeIcon icon={faHeart} className="icon heart-icon" />
+//               </div>
+//               <div className="button-bottom">
+//                 <FontAwesomeIcon
+//                   icon={faArrowDown}
+//                   className="icon download-icon"
+//                 />
+//               </div>
+//             </div>
+//           </div>
+//           <div className="box">
+//             <div className="content">
+//               <img src={Image2} alt="Image 2" />
+//               <div className="button-top">
+//                 <FontAwesomeIcon icon={faHeart} className="icon heart-icon" />
+//               </div>
+//               <div className="button-bottom">
+//                 <FontAwesomeIcon
+//                   icon={faArrowDown}
+//                   className="icon download-icon"
+//                 />
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+//         <div className="showMore">
+//           <button className="showMoreButton"> More Pictures </button>
+//         </div>
+//         <button onClick={onClose} className="close-button">
+//           <FontAwesomeIcon icon={faXmark} />
+//         </button>
+//       </div>
+
+//     </Modal>
+//   );
+// };
+// export default ImageModal;

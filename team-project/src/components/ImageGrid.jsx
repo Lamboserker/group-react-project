@@ -39,19 +39,7 @@ const ImageGrid = () => {
   return (
     <>
       <section id="news-waterfall" className="grid">
-/////
-        <div className="box">
-          <div className="content">
-          <img src={Image1} alt="Image 1" onClick={() => openModal(Image1)}/>
-            <div className="button-top">
-              <FontAwesomeIcon icon={faHeart} className="icon heart-icon" />
-            </div>
-            <div className="button-bottom">
-              <FontAwesomeIcon
-                icon={faArrowDown}
-                className="icon download-icon"
-              />
-/////////
+
         <div>
           {searchResults.map((result) => (
             <div key={result.id}>
@@ -76,7 +64,6 @@ const ImageGrid = () => {
                   </div>
                 </div>
               </div>
-///////
             </div>
           ))}
         </div>
@@ -355,20 +342,20 @@ const ImageGrid = () => {
         <button className="showMoreButton"> More Pictures </button>
       </div>
       <div>
-///////
+
       <ModalComponent
         isOpen={modalIsOpen}
         onClose={closeModal}
       />
     </div>
-//////////
+
         <ModalComponent
           isOpen={modalIsOpen}
           imageSrc={selectedImage}
           onClose={closeModal}
   />
-      </div>
-/////////
+      
+
     </>
   );
 };
