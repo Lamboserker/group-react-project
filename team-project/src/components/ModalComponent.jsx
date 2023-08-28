@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext } from "react";
 import Modal from "react-modal";
 import "./ModalComponent.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,38 +10,17 @@ import {
   faShield,
   faArrowDown,
 } from "@fortawesome/free-solid-svg-icons";
-import SearchContext from "../Context/SearchContext";
-import { fetchSearchResults } from "../UseFetch";
 
+const ImageModal = ({ isOpen, onClose, imageSrc }) => {
+  console.log("img src ::", imageSrc);
+  const result = imageSrc;
 
-const ImageModal = ({ isOpen, onClose }) => {
-  const { searchResults, setSearchResults, searchText } =
-    useContext(SearchContext);
-
-  useEffect(() => {
-    console.log("use effect here");
-    if (searchText) {
-      try {
-        fetchSearchResults(searchText)
-          .then((response) => {
-            setSearchResults(response.results);
-            console.log(response);
-          })
-          .catch((error) => {
-            console.error(error);
-          });
-      } catch (error) {
-        console.error(error);
-      }
-    }
-  }, [searchText, setSearchResults]);
-
-  console.log("Search results is rendering");
   return (
     <div>
-      {searchResults.map((result) => (
-        <div key={result.id}>
+      <div>
+        {result && (
           <Modal
+            key={result.id}
             isOpen={isOpen}
             onRequestClose={onClose}
             contentLabel="Image Modal"
@@ -96,8 +75,8 @@ const ImageModal = ({ isOpen, onClose }) => {
                 </div>
                 <div className="categories-pop">
                   <ul>
-                    <li>High definition images</li>
-                    <li>Nature</li>
+                    {result.tags.map(tag => (<li key={result.id}>{tag.title}</li>) )}
+                    {/* <li>Nature</li>
                     <li>Architecture and design</li>
                     <li>Wallpaper</li>
                     <li>Movies</li>
@@ -107,7 +86,7 @@ const ImageModal = ({ isOpen, onClose }) => {
                     <li>3D wallpaper</li>
                     <li>Texture and pattern</li>
                     <li>Experimental</li>
-                    <li>Animals</li>
+                    <li>Animals</li> */}
                   </ul>
                 </div>
               </div>
@@ -168,7 +147,7 @@ const ImageModal = ({ isOpen, onClose }) => {
                 </div>
                 <div className="box">
                   <div className="content">
-                    <img src="/"alt=" 4" />
+                    <img src="/" alt=" 4" />
                     <div className="button-top">
                       <a>
                         <FontAwesomeIcon
@@ -315,8 +294,8 @@ const ImageModal = ({ isOpen, onClose }) => {
               </button>
             </div>
           </Modal>
-        </div>
-      ))}
+        )}
+      </div>
     </div>
   );
 };
