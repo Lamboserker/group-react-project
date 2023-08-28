@@ -9,7 +9,7 @@ const apiUrl = process.env.REACT_APP_API_URL;
 export const fetchSearchResults = async (
   searchQuery,
   page = 1,
-  perPage = 1
+  perPage = 40
 ) => {
   try {
     const response = await axios.get(`https://api.unsplash.com/search/photos`, {

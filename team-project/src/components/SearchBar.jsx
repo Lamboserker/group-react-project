@@ -1,17 +1,14 @@
 import React, { useState, useEffect, useContext } from "react";
-import {useNavigate} from 'react-router-dom';
 import { fetchSearchResults } from "../UseFetch";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import "./LandingPage.css";
-import SearchResult from "./SearchResult";
-import SearchContext  from "../Context/SearchContext";
+import SearchContext from "../Context/SearchContext";
 
 function SearchBar() {
   const [searchQuery, setSearchQuery] = useState("");
-  const { setSearchResults,searchText,setSearchText } = useContext(SearchContext);
-
-  const navigate = useNavigate()
+  const { setSearchResults, searchText, setSearchText } =
+    useContext(SearchContext);
 
   useEffect(() => {
     if (searchQuery !== "") {
@@ -26,9 +23,9 @@ function SearchBar() {
     }
   }, [searchQuery, setSearchResults]);
 
-  // const renderDataOnClick = (e) => {
-  // navigate('/searchresult')
-  // };
+  const handleSearch = () => {
+    setSearchText(searchQuery); // Set the search query to trigger the useEffect
+  };
 
   return (
     <>
@@ -39,11 +36,10 @@ function SearchBar() {
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
         />
-        <button style={{border: "none"}}>
+        <button style={{ border: "none" }} onChange={handleSearch}>
           <FontAwesomeIcon
             icon={faMagnifyingGlass}
             className="search-icon"
-            // onClick={renderDataOnClick}
           ></FontAwesomeIcon>
         </button>
       </div>
