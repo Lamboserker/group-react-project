@@ -1,11 +1,10 @@
-/* Images grid */
+
 .grid {
   padding: 50px 20px;
   @media (min-width: 768px) {
     padding: 120px 80px;
   }
 }
-
 #news-waterfall {
   column-count: 1;
   column-gap: 20px;
@@ -13,31 +12,26 @@
   width: 100%;
   margin: auto;
   padding-bottom: 40px;
-
   @media (min-width: 768px) {
     column-count: 2;
     column-gap: 30px;
   }
-
   @media (min-width: 992px) {
     column-count: 3;
     column-gap: 50px;
   }
 }
-
 #news-waterfall .box {
   position: relative;
   box-shadow: 3px 0px 10px 0px rgba(33, 33, 33, 0.378);
   margin-bottom: 50px;
   overflow: hidden;
 }
-
 #news-waterfall .box img {
   width: 100%;
   display: block;
   background-size: cover;
 }
-
 .button-top,
 .button-bottom {
   position: absolute;
@@ -45,20 +39,16 @@
   opacity: 0;
   transition: opacity 0.3s ease;
 }
-
 .button-top {
   top: 10px;
 }
-
 .button-bottom {
   bottom: 10px;
 }
-
 .box:hover .button-top,
 .box:hover .button-bottom {
   opacity: 1;
 }
-
 .icon {
   font-size: 20px;
   cursor: pointer;
@@ -69,30 +59,24 @@
   color: gray;
   transition: 0.3s linear;
 }
-
 .download-icon {
   padding: 5px 20px;
 }
-
 .download-icon:hover {
   color: rgba(0, 0, 0, 0.757);
 }
-
 .heart-icon {
   padding: 10px;
 }
-
 .heart-icon:hover {
   color: rgba(255, 0, 0, 0.841);
 }
-
 .showMore {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 40px;
 }
-
 .showMoreButton {
   background-color: transparent;
   color: #000000;
@@ -103,7 +87,6 @@
   font-size: 16px;
   transition: 0.3s linear;
 }
-
 .showMoreButton:hover {
   background-color: #000;
   color: #fff;

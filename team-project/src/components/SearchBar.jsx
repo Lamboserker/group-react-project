@@ -1,93 +1,57 @@
-import React, { useState, useEffect } from 'react';
-import { fetchSearchResults } from '../UseFetch';
-import SearchResult from './SearchResult';
-import Popup from 'reactjs-popup';
+import React, { useState, useEffect, useContext } from "react";
+import { fetchSearchResults } from "../UseFetch";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import "./LandingPage.css";
+import SearchContext from "../Context/SearchContext";
 
-function SearchBar({onClose}) {
-  const [input, setInput] = useState("");
-  const [searchQuery, setSearchQuery] = useState('');
-  const [images, setImages] = useState([]);
-  const [showResults, setShowResults] = useState(false);
+function SearchBar() {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [search, setSearch] = useState(false);
+  const { setSearchResults, searchText, setSearchText } =
+    useContext(SearchContext);
 
   useEffect(() => {
-    if (searchQuery !== '') {
+    if (searchQuery !== "" && search === true) {
       fetchSearchResults(searchQuery)
-        .then(response => {
-          setImages(response.data.results);
+        .then((response) => {
+          setSearchResults(response.results);
+          console.log(response);
+          setSearch(false);
         })
-        .catch(error => {
+        .catch((error) => {
           console.error(error);
         });
     }
-  }, [searchQuery]);
+  }, [search]);
 
-  const handleDownload = async (url) => {
-    try {
-      const response = await fetch(url);
-      const blob = await response.blob();
-      const blobUrl = URL.createObjectURL(blob);
-
-      const link = document.createElement('a');
-      link.href = blobUrl;
-      link.download = 'image.jpg';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-
-      URL.revokeObjectURL(blobUrl);
-    } catch (error) {
-      console.error('Download error:', error);
-    }
+  const handleSearch = (e) => {
+    e.preventDefault();
+    setSearchText(searchQuery); // Set the search query to trigger the useEffect
+    setSearch(true);
   };
 
-  const renderDataOnClick = (e) => {
-    setSearchQuery(input);
-    setShowResults(true);
-  }
-
   return (
-    <div >
-      <div>
-        <input
-          type="text"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          placeholder="Search for photos"
-        />
-        <button onClick={renderDataOnClick}>Search</button>
-        <Popup
-          
-          modal
-          nested
-          open={showResults}
-          onClose={() => setShowResults(false)}
-        >
-          {close => (
-            <div className="modal">
-              <button className="close" onClick={close}>
-                &times;
-              </button>
-              <SearchResult
-                images={images}
-                handleDownload={handleDownload}
-                onClose={close}
-              />
-            </div>
-          )}
-        </Popup>
-        <div className="image-list">
-      {images.map(image => (
-        <div key={image.id} className="image-item">
-          <img src={image.urls.small} alt={image.alt_description} />
-          <div>
-            <button onClick={() => handleDownload(image.urls.full)}>Download</button>
-          </div>
-        </div>
-      ))}
-      <button className="close-button" onClick={onClose}>Close</button>
-    </div>
+    <>
+      <div className="hero-input">
+        <form onSubmit={handleSearch}>
+          <input
+            type="text"
+            placeholder="Search for photos"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+          <button style={{ border: "none" }} type="submit">
+            <FontAwesomeIcon
+              icon={faMagnifyingGlass}
+              className="search-icon"
+            ></FontAwesomeIcon>
+          </button>
+        </form>
       </div>
-    </div>
+
+      {/* <SearchResult /> */}
+    </>
   );
 }
 

@@ -1,13 +1,21 @@
 import React from "react";
 import "./LandingPage.css";
 import ImageGrid from "./ImageGrid";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import SearchBar from "./SearchBar";
 
-const LandingPage = () => {
+// const categoryHeroImages = {
+//   Nature: "url_to_nature_hero_image",
+//   Wallpaper: "url_to_wallpaper_hero_image",
+//   Cities: "url_to_cities_hero_image",
+//   Architecture: "url_to_architecture_hero_image",
+// };
+
+
+const LandingPage = (/*category*/) => {
+  // const heroImage = categoryHeroImages[category] || "default_hero_image_url";
   return (
     <>
-      <section className="hero">
+      <section className="hero" /*style={{ backgroundImage: `url(${heroImage})` }}*/>
         <div className="all-hero">
           <div className="hero-content">
             <p>Free high resolution images</p>
@@ -15,10 +23,7 @@ const LandingPage = () => {
               Download astonishing images & photos for you or your business
             </h1>
           </div>
-          <div className="hero-input">
-            <input type="text" placeholder="Search for free photos" />
-            <FontAwesomeIcon icon={faMagnifyingGlass} className="search-icon" />
-          </div>
+          <SearchBar />
 
           <div className="popular">
             <p>Popular categories: </p>

@@ -28,7 +28,7 @@ body {
 #navbar {
   display: flex;
   align-items: center;
-  justify-content: end;
+  justify-content: flex-end;
 }
 
 #navbar li {
@@ -73,7 +73,6 @@ body {
   background-color: #fff;
   color: #000;
 }
-
 
 .left-border {
   border-left: solid 2px #fff;

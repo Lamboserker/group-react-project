@@ -1,27 +1,39 @@
-import React from 'react';
-import DownloadDrop from './DownloadDrop';
+import React, { useContext, useEffect } from "react";
+import SearchContext from "../Context/SearchContext";
+import { fetchSearchResults } from "../UseFetch";
 
-import React from 'react'
+function SearchResult() {
+  const { searchResults, setSearchResults, searchText } =
+    useContext(SearchContext);
+ 
 
-const SearchResult = () => {
-  
+  useEffect(() => {
+    console.log("use effect here");
+    if (searchText) {
+      fetchSearchResults(searchText)
+        .then((response) => {
+          setSearchResults(response.results);
+          console.log(response);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+  }, []);
+
+  console.log("Search results is rendering");
   return (
-    <div className="image-list">
-      {images.map(image => (
-        <div key={image.id} className="image-item">
-          <img src={image.urls.small} alt={image.alt_description} />
-          <p>{image.alt_description}</p>
-          <div>
-            <button>Download</button>
-            <DownloadDrop handleDownload={handleDownload} image={image}/>
-          </div>
+    <div>
+      
+    <div>
+      {searchResults.map((result) => (
+        <div key={result.id}>
+          <img src={result.urls.small} alt={result.alt_description} />
         </div>
       ))}
-      <button className="close-button" onClick={onClose}>Close</button>
-    <div>
-      <img src='https://picsum.photos/id/1/500/333' alt=''></img>
     </div>
-  )
+    </div>
+  );
 }
 
-export default SearchResult
+export default SearchResult;
