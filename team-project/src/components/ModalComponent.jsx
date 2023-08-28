@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useState } from "react";
 import Modal from "react-modal";
 import "./ModalComponent.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -9,11 +9,35 @@ import {
   faCalendar,
   faShield,
   faArrowDown,
+  faAngleDown,
 } from "@fortawesome/free-solid-svg-icons";
 
 const ImageModal = ({ isOpen, onClose, imageSrc }) => {
   console.log("img src ::", imageSrc);
   const result = imageSrc;
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  const handleDownload = async (url) => {
+    try {
+      const response = await fetch(url);
+      const blob = await response.blob();
+      const blobUrl = URL.createObjectURL(blob);
+
+      const link = document.createElement("a");
+      link.href = blobUrl;
+      link.download = "image.jpg";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      URL.revokeObjectURL(blobUrl);
+    } catch (error) {
+      console.error("Download error:", error);
+    }
+  };
+  const toggleDropdown = () => {
+    setDropdownOpen(!dropdownOpen);
+  };
 
   return (
     <div>
@@ -47,7 +71,60 @@ const ImageModal = ({ isOpen, onClose, imageSrc }) => {
                       className="heart-icon-pop"
                     />
                   </button>
-                  <button id="btn-download-pop">Free Download</button>
+                  <ul>
+                    <li className={`dropdown ${dropdownOpen ? "clicked" : ""}`}>
+                      <a className="dropbtn" onClick={toggleDropdown}>
+                        Categories
+                        <span
+                          className={`arrow ${dropdownOpen ? "up" : "down"}`}
+                        >
+                          <FontAwesomeIcon
+                            icon={faAngleDown}
+                            className="arrowDown"
+                          />
+                        </span>
+                      </a>
+                      <div className="dropdown-content">
+                        <ul className="column left-content">
+                          <li>
+                            <button
+                              className="btn-download-pop"
+                              onClick={() =>
+                                handleDownload(result.urls.regular)
+                              }
+                            >
+                               1080px
+                            </button>
+                          </li>
+                          <li>
+                            <button
+                              className="btn-download-pop"
+                              onClick={() => handleDownload(result.urls.raw)}
+                            >
+                              fullSize
+                            </button>
+                          </li>
+                          <li>
+                            <button
+                              className="btn-download-pop"
+                              onClick={() => handleDownload(result.urls.full)}
+                            >
+                              fullSize
+                            </button>
+                          </li>
+                          <li>
+                            {" "}
+                            <button
+                              className="btn-download-pop"
+                              onClick={() => handleDownload(result.urls.small)}
+                            >
+                              400px
+                            </button>
+                          </li>
+                        </ul>
+                      </div>
+                    </li>
+                  </ul>
                 </div>
               </div>
 
@@ -75,7 +152,9 @@ const ImageModal = ({ isOpen, onClose, imageSrc }) => {
                 </div>
                 <div className="categories-pop">
                   <ul>
-                    {result.tags.map(tag => (<li key={result.id}>{tag.title}</li>) )}
+                    {result.tags.map((tag) => (
+                      <li key={result.id}>{tag.title}</li>
+                    ))}
                     {/* <li>Nature</li>
                     <li>Architecture and design</li>
                     <li>Wallpaper</li>

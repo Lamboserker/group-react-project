@@ -92,7 +92,7 @@
   left: -80px;
   cursor: pointer;
 }
-#btn-download-pop {
+.btn-download-pop {
   background-color: #329713;
   color: #fff;
   border: none;
@@ -101,8 +101,9 @@
   cursor: pointer;
   font-size: 16px;
   transition: 0.5s ease;
+  margin: 0.5rem;
 }
-#btn-download-pop:hover {
+.btn-download-pop:hover {
   background-color: #34d503;
 }
 .heart-pop {
@@ -167,7 +168,7 @@
   display: flex;
   width: 100%;
   align-items: center;
-  padding: 0 70px ; 
+  padding: 0 70px;
   margin-bottom: -30px;
   margin-top: 30px;
   text-align: left;
