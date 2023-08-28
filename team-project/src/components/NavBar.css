@@ -98,9 +98,6 @@ body {
   transition: 0.5s ease;
 }
 
-.column a:hover {
-  text-decoration: underline;
-}
 
 .arrow {
   font-size: 10px;
@@ -109,7 +106,6 @@ body {
 }
 
 .dropdown.clicked .dropdown-content {
-  display: none;
   margin-top: 1rem;
   left: -90px;
   border-radius: 5px;
@@ -123,6 +119,12 @@ body {
   grid-gap: 20px;
 }
 
+.dropdown-content .column li:hover {
+  text-decoration: underline;
+  color: #dad7d7;
+}
+
 .column {
   text-align: center;
 }
+

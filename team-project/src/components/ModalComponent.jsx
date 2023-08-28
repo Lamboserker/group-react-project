@@ -1,68 +1,174 @@
-import React, { useContext, useState, useEffect } from "react";
-import Modal from "react-modal";
-import "./ModalComponent.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart, faArrowDown } from "@fortawesome/free-solid-svg-icons";
-import SearchContext from "../Context/SearchContext";
-import { fetchSearchResults } from "../UseFetch";
-
-const ImageModal = ({ isOpen, imageSrc, onClose }) => {
-  const { searchResults, setSearchResults, searchText } =
-    useContext(SearchContext);
-
-  useEffect(() => {
-    console.log("use effect here");
-    if (searchText) {
-      try {
-        fetchSearchResults(searchText)
-          .then((response) => {
-            setSearchResults(response.results);
-            console.log(response);
-          })
-          .catch((error) => {
-            console.error(error);
-          });
-      } catch (error) {
-        console.error(error);
-      }
-    }
-  }, []);
-
-  console.log("Search results is rendering");
-  return (
-    <div>
-      {searchResults.map((result) => (
-        <div key={result.id}>
-          <Modal
-            isOpen={isOpen}
-            onRequestClose={onClose}
-            contentLabel="Image Modal"
-            className="ReactModal__Content" // Apply the modal content class
-            overlayClassName="ReactModal__Overlay" // Apply the overlay class
-          >
-            <div className="image-container">
-              <img
-                src={result.urls.regular}
-                alt={result.alt_description}
-                className="modal-image"
-              />
-            </div>
-            <div className="button-top">
-              <FontAwesomeIcon icon={faHeart} className="icon heart-icon" />
-            </div>
-            <div className="button-bottom">
-              <FontAwesomeIcon
-                icon={faArrowDown}
-                className="icon download-icon"
-              />
-            </div>
-            <button onClick={onClose} className="close-button">
-              Close
-            </button>
-          </Modal>
-        </div>
-      ))}
-    </div>
-  );
-};
-export default ImageModal;
+.ReactModal__Overlay {
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+.ReactModal__Content {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  height: 50rem;
+  background: #fff;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.modal-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  overflow-y: scroll;
+}
+.navbar-pop {
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+  margin-bottom: 30px;
+}
+.navbar-pop a {
+  text-decoration: none;
+  color: black;
+}
+.buttons-pop {
+  display: flex;
+}
+.artist-info {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 20px;
+}
+.img-artist {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.img-artist img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.ReactModal__Content img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+}
+.ReactModal__Content .close-button {
+  margin-top: 10px;
+  padding: 5px 10px;
+  font-size: 35px;
+  color: rgb(143, 143, 143);
+  background-color: transparent;
+  border: none;
+}
+.close-button {
+  position: absolute;
+  top: -22px;
+  left: -80px;
+  cursor: pointer;
+}
+#btn-download-pop {
+  background-color: #329713;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.5s ease;
+}
+#btn-download-pop:hover {
+  background-color: #34d503;
+}
+.heart-pop {
+  border: none;
+  margin-right: 15px;
+  border-radius: 10%;
+  padding: 8px;
+}
+.heart-pop .heart-icon-pop {
+  font-size: 20px;
+  cursor: pointer;
+  color: white;
+  background-color: rgb(242, 239, 239);
+  margin: 5px;
+  color: gray;
+  transition: 0.3s linear;
+}
+.heart-icon-pop:hover {
+  color: rgba(255, 0, 0, 0.841);
+}
+.additional-content {
+  margin-top: 20px;
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: gray;
+}
+.column-pop {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  padding: 10px;
+  border-radius: 5px;
+}
+.column-pop p {
+  font-size: 16px;
+  margin-left: 10px;
+}
+.categories-pop ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin: 30px 0;
+}
+.categories-pop li {
+  list-style: none;
+  padding: 5px 10px;
+  background-color: rgb(229, 229, 229);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.1s linear;
+}
+.categories-pop li:hover {
+  background-color: rgb(196, 196, 196);
+  color: #464646;
+}
+.related-pop {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  padding: 0 70px ; 
+  margin-bottom: -30px;
+  margin-top: 30px;
+  text-align: left;
+}
