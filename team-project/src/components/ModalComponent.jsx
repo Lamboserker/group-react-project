@@ -13,14 +13,18 @@ const ImageModal = ({ isOpen, imageSrc, onClose }) => {
   useEffect(() => {
     console.log("use effect here");
     if (searchText) {
-      fetchSearchResults(searchText)
-        .then((response) => {
-          setSearchResults(response.results);
-          console.log(response);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
+      try {
+        fetchSearchResults(searchText)
+          .then((response) => {
+            setSearchResults(response.results);
+            console.log(response);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      } catch (error) {
+        console.error(error);
+      }
     }
   }, []);
 
@@ -38,7 +42,7 @@ const ImageModal = ({ isOpen, imageSrc, onClose }) => {
           >
             <div className="image-container">
               <img
-                src={result.urls.full}
+                src={result.urls.regular}
                 alt={result.alt_description}
                 className="modal-image"
               />
