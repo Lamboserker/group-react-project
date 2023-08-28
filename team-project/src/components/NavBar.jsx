@@ -31,28 +31,28 @@ const NavBar = () => {
                 </span>
               </a>
               <div className="dropdown-content">
-                <div className="column left-content">
-                  <a href="/" rel="noopener noreferrer">Category 1</a>
-                  <a href="/" rel="noopener noreferrer">Category 2</a>
-                  <a href="/" rel="noopener noreferrer">Category 3</a>
-                  <a href="/" rel="noopener noreferrer">Category 1</a>
-                  <a href="/" rel="noopener noreferrer">Category 2</a>
-                  <a href="/" rel="noopener noreferrer">Category 3</a>
-                  <a href="/" rel="noopener noreferrer">Category 1</a>
-                  <a href="/" rel="noopener noreferrer">Category 2</a>
-                  <a href="/" rel="noopener noreferrer">Category 3</a>
-                </div>
-                <div className="column right-content">
-                  <a href="/" rel="noopener noreferrer">Category 1</a>
-                  <a href="/">Category 2</a>
-                  <a href="/">Category 3</a>
-                  <a href="/">Category 1</a>
-                  <a href="/">Category 2</a>
-                  <a href="/">Category 3</a>
-                  <a href="/">Category 1</a>
-                  <a href="/">Category 2</a>
-                  <a href="/">Category 3</a>
-                </div>
+                <ul className="column left-content">
+                  <li><a href="/" rel="noopener noreferrer">Category 1</a></li>
+                  <li><a href="/" rel="noopener noreferrer">Category 2</a></li>
+                  <li><a href="/" rel="noopener noreferrer">Category 3</a></li>
+                  <li><a href="/" rel="noopener noreferrer">Category 1</a></li>
+                  <li><a href="/" rel="noopener noreferrer">Category 2</a></li>
+                  <li><a href="/" rel="noopener noreferrer">Category 3</a></li>
+                  <li><a href="/" rel="noopener noreferrer">Category 1</a></li>
+                  <li><a href="/" rel="noopener noreferrer">Category 2</a></li>
+                  <li><a href="/" rel="noopener noreferrer">Category 3</a></li>
+                </ul>
+                <ul className="column right-content">
+                  <li><a href="/" rel="noopener noreferrer">Category 1</a></li>
+                  <li><a href="/" rel="noopener noreferrer">Category 2</a></li>
+                  <li><a href="/" rel="noopener noreferrer">Category 3</a></li>
+                  <li><a href="/" rel="noopener noreferrer">Category 1</a></li>
+                  <li><a href="/" rel="noopener noreferrer">Category 2</a></li>
+                  <li><a href="/" rel="noopener noreferrer">Category 3</a></li>
+                  <li><a href="/" rel="noopener noreferrer">Category 1</a></li>
+                  <li><a href="/" rel="noopener noreferrer">Category 2</a></li>
+                  <li><a href="/" rel="noopener noreferrer">Category 3</a></li>
+                </ul>
               </div>
             </li>
             <li>

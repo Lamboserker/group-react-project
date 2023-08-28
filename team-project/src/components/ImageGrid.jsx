@@ -27,7 +27,7 @@ const ImageGrid = () => {
       <section id="news-waterfall" className="grid">
         <div className="box">
           <div className="content">
-            <img src={Image1} alt="Image 1" onClick={openModal} />
+          <img src={Image1} alt="Image 1" onClick={() => openModal(Image1)}/>
             <div className="button-top">
               <FontAwesomeIcon icon={faHeart} className="icon heart-icon" />
             </div>
@@ -190,7 +190,6 @@ const ImageGrid = () => {
       <div>
       <ModalComponent
         isOpen={modalIsOpen}
-        imageSrc={selectedImage}
         onClose={closeModal}
       />
     </div>

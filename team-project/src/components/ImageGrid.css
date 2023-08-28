@@ -1,5 +1,4 @@
 /* Images grid */
-
 .grid {
   padding: 50px 20px;
   @media (min-width: 768px) {
@@ -92,21 +91,20 @@
   justify-content: center;
   align-items: center;
   margin-bottom: 40px;
-
 }
 
 .showMoreButton {
-    background-color: transparent;
-    color: #000000;
-    border: 1px solid #000000;
-    border-radius: 5px;
-    padding: 10px 30px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: 0.3s linear;
+  background-color: transparent;
+  color: #000000;
+  border: 1px solid #000000;
+  border-radius: 5px;
+  padding: 10px 30px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.3s linear;
 }
 
 .showMoreButton:hover {
-    background-color: #000;
-    color:#fff;
+  background-color: #000;
+  color: #fff;
 }
