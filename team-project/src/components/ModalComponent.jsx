@@ -11,25 +11,21 @@ import {
   faArrowDown,
   faAngleDown,
 } from "@fortawesome/free-solid-svg-icons";
-
 const ImageModal = ({ isOpen, onClose, imageSrc }) => {
   console.log("img src ::", imageSrc);
   const result = imageSrc;
   const [dropdownOpen, setDropdownOpen] = useState(false);
-
   const handleDownload = async (url) => {
     try {
       const response = await fetch(url);
       const blob = await response.blob();
       const blobUrl = URL.createObjectURL(blob);
-
       const link = document.createElement("a");
       link.href = blobUrl;
       link.download = "image.jpg";
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
-
       URL.revokeObjectURL(blobUrl);
     } catch (error) {
       console.error("Download error:", error);
@@ -38,7 +34,6 @@ const ImageModal = ({ isOpen, onClose, imageSrc }) => {
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
   };
-
   return (
     <div>
       <div>
@@ -63,7 +58,6 @@ const ImageModal = ({ isOpen, onClose, imageSrc }) => {
                     </div>
                   </div>
                 </a>
-
                 <div className="buttons-pop">
                   <button className="heart-pop">
                     <FontAwesomeIcon
@@ -71,63 +65,14 @@ const ImageModal = ({ isOpen, onClose, imageSrc }) => {
                       className="heart-icon-pop"
                     />
                   </button>
-                  <ul>
-                    <li className={`dropdown ${dropdownOpen ? "clicked" : ""}`}>
-                      <a className="dropbtn" onClick={toggleDropdown}>
-                        Download
-                        <span
-                          className={`arrow ${dropdownOpen ? "up" : "down"}`}
-                        >
-                          <FontAwesomeIcon
-                            icon={faAngleDown}
-                            className="arrowDown"
-                          />
-                        </span>
-                      </a>
-                      <div className="dropdown-content">
-                        <ul className="column left-content">
-                          <li>
-                            <button
-                              className="btn-download-pop"
-                              onClick={() =>
-                                handleDownload(result.urls.regular)
-                              }
-                            >
-                               1080px
-                            </button>
-                          </li>
-                          <li>
-                            <button
-                              className="btn-download-pop"
-                              onClick={() => handleDownload(result.urls.raw)}
-                            >
-                              fullSize
-                            </button>
-                          </li>
-                          <li>
-                            <button
-                              className="btn-download-pop"
-                              onClick={() => handleDownload(result.urls.full)}
-                            >
-                              fullSize
-                            </button>
-                          </li>
-                          <li>
-                            {" "}
-                            <button
-                              className="btn-download-pop"
-                              onClick={() => handleDownload(result.urls.small)}
-                            >
-                              400px
-                            </button>
-                          </li>
-                        </ul>
-                      </div>
-                    </li>
-                  </ul>
+                  <button
+                    className="btn-download-pop"
+                    onClick={() => handleDownload(result.urls.regular)}
+                  >
+                    Free download
+                  </button>
                 </div>
               </div>
-
               <div className="image-container">
                 <img
                   src={result.urls.regular}
@@ -140,12 +85,10 @@ const ImageModal = ({ isOpen, onClose, imageSrc }) => {
                   <FontAwesomeIcon icon={faLocationDot} className="des-icon" />
                   <p>{result.user.location}</p>
                 </div>
-
                 <div className="column-pop">
                   <FontAwesomeIcon icon={faCalendar} className="des-icon" />
                   <p>{result.created_at}</p>
                 </div>
-
                 <div className="column-pop">
                   <FontAwesomeIcon icon={faShield} className="des-icon" />
                   <p>Save to download.</p>
@@ -164,7 +107,7 @@ const ImageModal = ({ isOpen, onClose, imageSrc }) => {
               <div id="news-waterfall" className="grid">
                 <div className="box">
                   <div className="content">
-                    <img src="/" alt=" 1" />
+                    <img src={result.current_user_collections.cover_photo} alt=" " />
                     <div className="button-top">
                       <FontAwesomeIcon
                         icon={faHeart}
@@ -179,11 +122,8 @@ const ImageModal = ({ isOpen, onClose, imageSrc }) => {
                     </div>
                   </div>
                 </div>
-                
               </div>
-              <div className="showMore">
-                <button className="showMoreButton"> More Pictures </button>
-              </div>
+            
               <button onClick={onClose} className="close-button">
                 <FontAwesomeIcon icon={faXmark} />
               </button>
