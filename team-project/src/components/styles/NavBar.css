@@ -98,7 +98,6 @@ body {
   transition: 0.5s ease;
 }
 
-
 .arrow {
   font-size: 10px;
   margin-left: 8px;
@@ -127,4 +126,3 @@ body {
 .column {
   text-align: center;
 }
-

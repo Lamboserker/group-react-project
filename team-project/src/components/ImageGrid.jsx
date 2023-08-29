@@ -1,19 +1,22 @@
 import React, { useState, useContext, useEffect } from "react";
 import ModalComponent from "./ModalComponent";
-import "./ImageGrid.css";
+import "./styles/ImageGrid.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faArrowDown } from "@fortawesome/free-solid-svg-icons";
 
 import SearchContext from "../Context/SearchContext";
-import { fetchSearchResults } from "../UseFetch";
+import { fetchSearchResults } from "../api/UseFetch";
 
-const ImageGrid = () => {
+const ImageGrid = ({ handleCategoryClick }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState("");
-  
+  const catResult = handleCategoryClick;
+
+  console.log(catResult);
+
   const openModal = (imageSrc) => {
     setSelectedImage(imageSrc);
-    console.log('selectedImg :',imageSrc);
+    console.log("selectedImg :", imageSrc);
     setModalIsOpen(true);
   };
 
@@ -25,7 +28,7 @@ const ImageGrid = () => {
     useContext(SearchContext);
 
   useEffect(() => {
-    console.log("use effect here");
+    // Handle search text-based fetching
     if (searchText) {
       fetchSearchResults(searchText)
         .then((response) => {
@@ -49,7 +52,7 @@ const ImageGrid = () => {
                   <img
                     src={result.urls.small}
                     alt={result.alt_description}
-                    onClick={()=> openModal(result)}
+                    onClick={() => openModal(result)}
                   />
                   <div className="button-top">
                     <FontAwesomeIcon
@@ -69,15 +72,14 @@ const ImageGrid = () => {
           ))}
         </div>
       </section>
-      <div className="showMore">
+      {/* <div className="showMore">
         <button className="showMoreButton"> More Pictures </button>
-      </div>
-     
+      </div> */}
+
       <ModalComponent
         isOpen={modalIsOpen}
         imageSrc={selectedImage}
         onClose={closeModal}
-        
       />
     </>
   );
