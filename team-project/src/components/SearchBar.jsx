@@ -1,15 +1,14 @@
 import React, { useState, useEffect, useContext } from "react";
-import { fetchSearchResults } from "../UseFetch";
+import { fetchSearchResults } from "../api/UseFetch";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import "./LandingPage.css";
+import "./styles/LandingPage.css";
 import SearchContext from "../Context/SearchContext";
 
 function SearchBar() {
   const [searchQuery, setSearchQuery] = useState("");
   const [search, setSearch] = useState(false);
-  const { setSearchResults, searchText, setSearchText } =
-    useContext(SearchContext);
+  const { setSearchResults, setSearchText } = useContext(SearchContext);
 
   useEffect(() => {
     if (searchQuery !== "" && search === true) {
@@ -23,7 +22,7 @@ function SearchBar() {
           console.error(error);
         });
     }
-  }, [search]);
+  }, [searchQuery, setSearchResults, search]);
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -49,8 +48,6 @@ function SearchBar() {
           </button>
         </form>
       </div>
-
-      {/* <SearchResult /> */}
     </>
   );
 }

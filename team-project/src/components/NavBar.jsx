@@ -1,17 +1,37 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link, Outlet } from "react-router-dom";
-import "./NavBar.css";
 import PixPulseLogo from "../images/PULSE.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleDown, faBars } from "@fortawesome/free-solid-svg-icons";
+import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
+import "./styles/NavBar.css";
+import { fetchSearchResults } from "../api/UseFetch";
+import ImageGrid from "./ImageGrid";
+import SearchContext from "../Context/SearchContext";
+
+
 
 const NavBar = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
+   const { setSearchResults } = useContext(SearchContext);
+   const [showImageGrid, setShowImageGrid] = useState(false); // State for ImageGrid visibility
 
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
   };
 
+  const handleCategoryClick = async (category) => {
+    // Trigger the fetchNature function and handle the data
+    try {
+      const natureData = await fetchSearchResults(category);
+
+      // Handle the natureData as needed
+      console.log(natureData);
+      setSearchResults(natureData.results)
+      setShowImageGrid(true);
+    } catch (error) {
+      console.error("Error fetching nature data:", error);
+    }
+  };
 
   return (
     <>
@@ -25,7 +45,11 @@ const NavBar = () => {
         <div>
           <ul id="navbar">
             <li className={`dropdown ${dropdownOpen ? "clicked" : ""}`}>
-              <a className="dropbtn" onClick={toggleDropdown}>
+              <a
+                className="dropbtn"
+                rel="noopener noreferrer"
+                onClick={toggleDropdown}
+              >
                 Categories
                 <span className={`arrow ${dropdownOpen ? "up" : "down"}`}>
                   <FontAwesomeIcon icon={faAngleDown} className="arrowDown" />
@@ -34,48 +58,13 @@ const NavBar = () => {
               <div className="dropdown-content">
                 <ul className="column left-content">
                   <li>
-                    <a href="/" rel="noopener noreferrer">
+                    <a onClick={()=>handleCategoryClick("nature")} rel="noopener noreferrer">
                       Category 1
                     </a>
                   </li>
                   <li>
                     <a href="/" rel="noopener noreferrer">
                       Category 2
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/" rel="noopener noreferrer">
-                      Category 3
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/" rel="noopener noreferrer">
-                      Category 1
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/" rel="noopener noreferrer">
-                      Category 2
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/" rel="noopener noreferrer">
-                      Category 3
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/" rel="noopener noreferrer">
-                      Category 1
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/" rel="noopener noreferrer">
-                      Category 2
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/" rel="noopener noreferrer">
-                      Category 3
                     </a>
                   </li>
                 </ul>
@@ -88,41 +77,6 @@ const NavBar = () => {
                   <li>
                     <a href="/" rel="noopener noreferrer">
                       Category 2
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/" rel="noopener noreferrer">
-                      Category 3
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/" rel="noopener noreferrer">
-                      Category 1
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/" rel="noopener noreferrer">
-                      Category 2
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/" rel="noopener noreferrer">
-                      Category 3
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/" rel="noopener noreferrer">
-                      Category 1
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/" rel="noopener noreferrer">
-                      Category 2
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/" rel="noopener noreferrer">
-                      Category 3
                     </a>
                   </li>
                 </ul>
@@ -148,8 +102,12 @@ const NavBar = () => {
       </section>
 
       <Outlet />
+       {/* Conditionally render ImageGrid based on showImageGrid state */}
+       {showImageGrid && <ImageGrid handleCategoryClick={handleCategoryClick} />}
     </>
+    
   );
 };
 
 export default NavBar;
+

@@ -17,7 +17,7 @@ body {
       rgba(0, 0, 0, 0.9),
       rgba(255, 255, 225, 0)
     ),
-    url("../images/hero-banner.jpg");
+    url("../../images/hero-banner.jpg");
   height: 75vh;
   background-size: cover;
   background-position: top 25% right 0;
@@ -185,8 +185,10 @@ body {
   }
 
   .hero-input input {
+    font-size: 1.2rem;
     width: 35rem;
-    display: flex;
+    display: block;
+    margin: 0 auto;
   }
 
   .search-icon {
@@ -217,7 +219,8 @@ body {
   .hero-input input {
     font-size: 1.2rem;
     width: 20rem;
-    display: flex;
+    display: block;
+    margin: 0 auto;
   }
 
   .search-icon {
@@ -227,6 +230,7 @@ body {
 
   .pop-categories {
     margin-top: 10px;
+    justify-content: center;
   }
 
   .pop-categories li a {
@@ -234,6 +238,7 @@ body {
   }
 }
 
+/* Additional Media Query for Height Adjustment */
 @media (max-height: 700px) {
   .hero {
     height: 95vh;
