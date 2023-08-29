@@ -1,42 +1,17 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
-import {useNavigate} from 'react-router-dom';
+import "./NavBar.css";
 import PixPulseLogo from "../images/PULSE.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
-import "./NavBar.css";
-import { fetchCategories } from "../UseFetch";
-import SearchContext from "../Context/SearchContext";
-import CategoryResult from "./CategoryResult";
+import { faAngleDown, faBars } from "@fortawesome/free-solid-svg-icons";
 
 const NavBar = () => {
-
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const { searchResults,setSearchResults} = useContext(SearchContext);
-  const [searchQuery, setSearchQuery] = useState("");
-  
-  const navigate = useNavigate()
-
-  useEffect(() => {
-    if (searchQuery !== "") {
-      fetchCategories(searchQuery)
-        .then((response) => {
-          setSearchResults(response.results);
-          console.log(response);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    }
-  }, [searchQuery, setSearchResults]);
-
-  const renderDataOnClick = (e) => {
-  navigate('/categoryresult')
-  };
 
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
   };
+
 
   return (
     <>
@@ -58,28 +33,99 @@ const NavBar = () => {
               </a>
               <div className="dropdown-content">
                 <ul className="column left-content">
-                  <li><a href="/" rel="noopener noreferrer">Category 1</a></li>
-                  <li><a href="/" rel="noopener noreferrer">Category 2</a></li>
-                  <li><a href="/" rel="noopener noreferrer">Category 3</a></li>
-                  <li><a href="/" rel="noopener noreferrer">Category 1</a></li>
-                  <li><a href="/" rel="noopener noreferrer">Category 2</a></li>
-                  <li><a href="/" rel="noopener noreferrer">Category 3</a></li>
-                  <li><a href="/" rel="noopener noreferrer">Category 1</a></li>
-                  <li><a href="/" rel="noopener noreferrer">Category 2</a></li>
-                  <li><a href="/" rel="noopener noreferrer">Category 3</a></li>
+                  <li>
+                    <a href="/" rel="noopener noreferrer">
+                      Category 1
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/" rel="noopener noreferrer">
+                      Category 2
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/" rel="noopener noreferrer">
+                      Category 3
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/" rel="noopener noreferrer">
+                      Category 1
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/" rel="noopener noreferrer">
+                      Category 2
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/" rel="noopener noreferrer">
+                      Category 3
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/" rel="noopener noreferrer">
+                      Category 1
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/" rel="noopener noreferrer">
+                      Category 2
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/" rel="noopener noreferrer">
+                      Category 3
+                    </a>
+                  </li>
                 </ul>
                 <ul className="column right-content">
-                  <li><a href="/" rel="noopener noreferrer">Category 1</a></li>
-                  <li><a href="/" rel="noopener noreferrer">Category 2</a></li>
-                  <li><a href="/" rel="noopener noreferrer">Category 3</a></li>
-                  <li><a href="/" rel="noopener noreferrer">Category 1</a></li>
-                  <li><a href="/" rel="noopener noreferrer">Category 2</a></li>
-                  <li><a href="/" rel="noopener noreferrer">Category 3</a></li>
-                  <li><a href="/" rel="noopener noreferrer">Category 1</a></li>
-                  <li><a href="/" rel="noopener noreferrer">Category 2</a></li>
-                  <li><a href="/" rel="noopener noreferrer">Category 3</a></li>
+                  <li>
+                    <a href="/" rel="noopener noreferrer">
+                      Category 1
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/" rel="noopener noreferrer">
+                      Category 2
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/" rel="noopener noreferrer">
+                      Category 3
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/" rel="noopener noreferrer">
+                      Category 1
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/" rel="noopener noreferrer">
+                      Category 2
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/" rel="noopener noreferrer">
+                      Category 3
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/" rel="noopener noreferrer">
+                      Category 1
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/" rel="noopener noreferrer">
+                      Category 2
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/" rel="noopener noreferrer">
+                      Category 3
+                    </a>
+                  </li>
                 </ul>
-
               </div>
             </li>
             <li>
@@ -102,7 +148,6 @@ const NavBar = () => {
       </section>
 
       <Outlet />
-      <CategoryResult/>
     </>
   );
 };
