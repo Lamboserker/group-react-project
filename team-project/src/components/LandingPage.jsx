@@ -1,13 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./styles/LandingPage.css";
 import ImageGrid from "./ImageGrid";
 import SearchBar from "./SearchBar";
+import SearchContext from "../Context/SearchContext";
+import { fetchSearchResults } from "../api/UseFetch";
 
 const LandingPage = () => {
   const [showImageGrid, setShowImageGrid] = useState(false); // State for ImageGrid visibility
+  const { setSearchResults } = useContext(SearchContext);
 
-  const handleCategoryClick = () => {
-    setShowImageGrid(true);
+  const handleCategoryClick = async (category) => {
+    // Trigger the fetchNature function and handle the data
+    try {
+      const natureData = await fetchSearchResults(category);
+
+      // Handle the natureData as needed
+      console.log(natureData);
+      setSearchResults(natureData.results);
+      setShowImageGrid(true);
+    } catch (error) {
+      console.error("Error fetching nature data:", error);
+    }
   };
 
   return (
@@ -28,16 +41,72 @@ const LandingPage = () => {
             <p>Popular categories: </p>
             <ul className="pop-categories">
               <li>
-                <a href="/">Nature</a>
+                <button
+                  style={{
+                    background: "none",
+                    color: "white",
+                    border: "none",
+                    fontSize: "16px",
+                    marginRight: "0.4rem",
+                    cursor: "pointer",
+                    textDecoration: "underline"
+                  }}
+                  onClick={() => handleCategoryClick("nature")}
+                  rel="noopener noreferrer"
+                >
+                  Nature
+                </button>
               </li>
               <li>
-                <a href="/">Wallpaper</a>
+              <button
+                  style={{
+                    background: "none",
+                    color: "white",
+                    border: "none",
+                    fontSize: "16px",
+                    marginRight: "0.4rem",
+                    cursor: "pointer",
+                    textDecoration: "underline"
+                  }}
+                  onClick={() => handleCategoryClick("wallpapers")}
+                  rel="noopener noreferrer"
+                >
+                  Wallpapers
+                </button>
               </li>
               <li>
-                <a href="/">Cities</a>
+              <button
+                  style={{
+                    background: "none",
+                    color: "white",
+                    border: "none",
+                    fontSize: "16px",
+                    marginRight: "0.4rem",
+                    cursor: "pointer",
+                    textDecoration: "underline"
+                  }}
+                  onClick={() => handleCategoryClick("cities")}
+                  rel="noopener noreferrer"
+                >
+                  Cities
+                </button>
               </li>
               <li>
-                <a href="/">Architecture</a>
+              <button
+                  style={{
+                    background: "none",
+                    color: "white",
+                    border: "none",
+                    fontSize: "16px",
+                    marginRight: "0.4rem",
+                    cursor: "pointer",
+                    textDecoration: "underline"
+                  }}
+                  onClick={() => handleCategoryClick("Architecture")}
+                  rel="noopener noreferrer"
+                >
+                  Architecture
+                </button>
               </li>
             </ul>
           </div>

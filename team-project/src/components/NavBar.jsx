@@ -59,24 +59,24 @@ const NavBar = () => {
                 <ul className="column left-content">
                   <li>
                     <a onClick={()=>handleCategoryClick("nature")} rel="noopener noreferrer">
-                      Category 1
+                      Nature
                     </a>
                   </li>
                   <li>
-                    <a href="/" rel="noopener noreferrer">
-                      Category 2
+                    <a onClick={()=>handleCategoryClick("cars")} rel="noopener noreferrer">
+                      Cars
                     </a>
                   </li>
                 </ul>
                 <ul className="column right-content">
-                  <li>
-                    <a href="/" rel="noopener noreferrer">
-                      Category 1
+                <li>
+                    <a onClick={()=>handleCategoryClick("space")} rel="noopener noreferrer">
+                      Space
                     </a>
                   </li>
                   <li>
-                    <a href="/" rel="noopener noreferrer">
-                      Category 2
+                    <a onClick={()=>handleCategoryClick("animals")} rel="noopener noreferrer">
+                      Animals
                     </a>
                   </li>
                 </ul>
@@ -95,7 +95,9 @@ const NavBar = () => {
               <button className="upload-button">Upload a picture!</button>
             </li>
             <li>
-              <button className="login-button">Login</button>
+              {/* <button className="login-button">Login */}
+              <Link to = "register" className="login-button">Login</Link>
+              {/* </button> */}
             </li>
           </ul>
         </div>

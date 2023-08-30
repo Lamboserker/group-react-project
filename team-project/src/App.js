@@ -6,7 +6,7 @@ import LandingPage from "./components/LandingPage";
 import Blog from "./components/Blog";
 import Shop from "./components/Shop";
 import SearchProvider from "./Context/SearchProvider";
-
+import Register from './components/Register'
 
 function App() {
   return (
@@ -18,6 +18,7 @@ function App() {
               <Route index element={<LandingPage />} />
               <Route path="blog" element={<Blog />} />
               <Route path="shop" element={<Shop />} />
+              <Route path="register" element={<Register />} />
               {/*<Route path="*" element={PageNotFound} />*/}
             </Route>
           </Routes>

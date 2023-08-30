@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useEffect, useContext} from "react";
 import Modal from "react-modal";
 import "./styles/ModalComponent.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -9,20 +9,26 @@ import {
   faCalendar,
   faShield,
   faArrowDown,
-  faAngleDown,
 } from "@fortawesome/free-solid-svg-icons";
+
+import SearchContext from "../Context/SearchContext";
+import { fetchSearchResults } from "../api/UseFetch";
+
 const ImageModal = ({ isOpen, onClose, imageSrc }) => {
-  console.log("img src ::", imageSrc);
-  const result = imageSrc;
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const handleDownload = async (url) => {
+  const { searchResults, setSearchResults, searchText } =
+    useContext(SearchContext);
+    const result = imageSrc;
+    console.log("test",result.urls);
+
+
+  const handleDownload = async (url, imageName) => {
     try {
       const response = await fetch(url);
       const blob = await response.blob();
       const blobUrl = URL.createObjectURL(blob);
       const link = document.createElement("a");
       link.href = blobUrl;
-      link.download = "image.jpg";
+      link.download = imageName;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
@@ -31,9 +37,26 @@ const ImageModal = ({ isOpen, onClose, imageSrc }) => {
       console.error("Download error:", error);
     }
   };
-  const toggleDropdown = () => {
-    setDropdownOpen(!dropdownOpen);
-  };
+
+
+  useEffect(() => {
+    // Handle search text-based fetching
+    if (searchText) {
+      fetchSearchResults(searchText)
+        .then((response) => {
+          setSearchResults(response.results);
+          console.log(response);
+         
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+  }, [searchText, setSearchResults]);
+
+  
+
+
   return (
     <div>
       <div>
@@ -68,7 +91,13 @@ const ImageModal = ({ isOpen, onClose, imageSrc }) => {
 
                   <button
                     className="btn-download-pop"
-                    onClick={() => handleDownload(result.urls.regular)}
+                    onClick={() =>
+                      handleDownload(
+                        result.urls.full,
+                        result.alt_description + ".jpg"
+                      )
+                    }
+
                   >
                     Free download
                   </button>
@@ -107,8 +136,12 @@ const ImageModal = ({ isOpen, onClose, imageSrc }) => {
               </div>
               <div id="news-waterfall" className="grid">
                 <div className="box">
-                  <div className="content">
-                    <img src="/" alt=" 1" />
+                 <div className="content">
+                    
+                     <img src={result.user.links.photos} alt="test" />
+                    
+                    
+
                     <div className="button-top">
                       <FontAwesomeIcon
                         icon={faHeart}
@@ -123,10 +156,9 @@ const ImageModal = ({ isOpen, onClose, imageSrc }) => {
                     </div>
                   </div>
                 </div>
+
               </div>
-              <div className="showMore">
-                <button className="showMoreButton"> More Pictures </button>
-              </div>
+
               <button onClick={onClose} className="close-button">
                 <FontAwesomeIcon icon={faXmark} />
               </button>
