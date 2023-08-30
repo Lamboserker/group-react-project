@@ -93,7 +93,7 @@
   cursor: pointer;
 }
 .btn-download-pop {
-  background-color: #329713;
+  background-color: #008060;
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -103,7 +103,7 @@
   transition: 0.5s ease;
 }
 .btn-download-pop:hover {
-  background-color: #34d503;
+  background-color: #00a47b;
 }
 .heart-pop {
   border: none;

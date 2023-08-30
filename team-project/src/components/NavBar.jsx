@@ -8,12 +8,10 @@ import { fetchSearchResults } from "../api/UseFetch";
 import ImageGrid from "./ImageGrid";
 import SearchContext from "../Context/SearchContext";
 
-
-
 const NavBar = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
-   const { setSearchResults } = useContext(SearchContext);
-   const [showImageGrid, setShowImageGrid] = useState(false); 
+  const { setSearchResults } = useContext(SearchContext);
+  const [showImageGrid, setShowImageGrid] = useState(false);
 
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
@@ -26,7 +24,7 @@ const NavBar = () => {
 
       // Handle the natureData as needed
       console.log(natureData);
-      setSearchResults(natureData.results)
+      setSearchResults(natureData.results);
       setShowImageGrid(true);
     } catch (error) {
       console.error("Error fetching nature data:", error);
@@ -58,24 +56,36 @@ const NavBar = () => {
               <div className="dropdown-content">
                 <ul className="column left-content">
                   <li>
-                    <a onClick={()=>handleCategoryClick("nature")} rel="noopener noreferrer">
+                    <a
+                      onClick={() => handleCategoryClick("nature")}
+                      rel="noopener noreferrer"
+                    >
                       Nature
                     </a>
                   </li>
                   <li>
-                    <a onClick={()=>handleCategoryClick("cars")} rel="noopener noreferrer">
+                    <a
+                      onClick={() => handleCategoryClick("cars")}
+                      rel="noopener noreferrer"
+                    >
                       Cars
                     </a>
                   </li>
                 </ul>
                 <ul className="column right-content">
-                <li>
-                    <a onClick={()=>handleCategoryClick("space")} rel="noopener noreferrer">
+                  <li>
+                    <a
+                      onClick={() => handleCategoryClick("space")}
+                      rel="noopener noreferrer"
+                    >
                       Space
                     </a>
                   </li>
                   <li>
-                    <a onClick={()=>handleCategoryClick("animals")} rel="noopener noreferrer">
+                    <a
+                      onClick={() => handleCategoryClick("animals")}
+                      rel="noopener noreferrer"
+                    >
                       Animals
                     </a>
                   </li>
@@ -96,7 +106,9 @@ const NavBar = () => {
             </li>
             <li>
               {/* <button className="login-button">Login */}
-              <Link to = "register" className="login-button">Login</Link>
+              <Link to="/register" className="login-button">
+                Login
+              </Link>
               {/* </button> */}
             </li>
           </ul>
@@ -104,12 +116,10 @@ const NavBar = () => {
       </section>
 
       <Outlet />
-       {/* Conditionally render ImageGrid based on showImageGrid state */}
-       {showImageGrid && <ImageGrid handleCategoryClick={handleCategoryClick} />}
+      {/* Conditionally render ImageGrid based on showImageGrid state */}
+      {showImageGrid && <ImageGrid handleCategoryClick={handleCategoryClick} />}
     </>
-    
   );
 };
 
 export default NavBar;
-
