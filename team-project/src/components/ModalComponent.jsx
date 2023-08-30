@@ -1,4 +1,4 @@
-import React, {useEffect, useContext} from "react";
+import React, { useEffect, useState } from "react";
 import Modal from "react-modal";
 import "./styles/ModalComponent.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,17 +10,11 @@ import {
   faShield,
   faArrowDown,
 } from "@fortawesome/free-solid-svg-icons";
-
-import SearchContext from "../Context/SearchContext";
+import { faUnsplash } from "@fortawesome/free-brands-svg-icons";
 import { fetchSearchResults } from "../api/UseFetch";
-
-const ImageModal = ({ isOpen, onClose, imageSrc }) => {
-  const { searchResults, setSearchResults, searchText } =
-    useContext(SearchContext);
-    const result = imageSrc;
-    console.log("test",result.urls);
-
-
+const ImageModal = ({ isOpen, onClose, imageSrc, openModal }) => {
+  const [userImages, setUserImages] = useState([]);
+  const result = imageSrc;
   const handleDownload = async (url, imageName) => {
     try {
       const response = await fetch(url);
@@ -37,26 +31,19 @@ const ImageModal = ({ isOpen, onClose, imageSrc }) => {
       console.error("Download error:", error);
     }
   };
-
-
   useEffect(() => {
-    // Handle search text-based fetching
-    if (searchText) {
-      fetchSearchResults(searchText)
+    if (result) {
+      console.log("asldkjf", result);
+      const userImagesURL = result.user.links.photos;
+      fetchSearchResults(userImagesURL)
         .then((response) => {
-          setSearchResults(response.results);
-          console.log(response);
-         
+          setUserImages(response.results);
         })
         .catch((error) => {
           console.error(error);
         });
     }
-  }, [searchText, setSearchResults]);
-
-  
-
-
+  }, [result]);
   return (
     <div>
       <div>
@@ -88,7 +75,6 @@ const ImageModal = ({ isOpen, onClose, imageSrc }) => {
                       className="heart-icon-pop"
                     />
                   </button>
-
                   <button
                     className="btn-download-pop"
                     onClick={() =>
@@ -97,7 +83,6 @@ const ImageModal = ({ isOpen, onClose, imageSrc }) => {
                         result.alt_description + ".jpg"
                       )
                     }
-
                   >
                     Free download
                   </button>
@@ -123,6 +108,19 @@ const ImageModal = ({ isOpen, onClose, imageSrc }) => {
                   <FontAwesomeIcon icon={faShield} className="des-icon" />
                   <p>Save to download.</p>
                 </div>
+                <div className="column-pop">
+                  <FontAwesomeIcon icon={faUnsplash} className="des-icon" />
+                  <a
+                    style={{
+                      textDecoration: "none",
+                      color: "gray",
+                      marginLeft: "0.6rem",
+                    }}
+                    href="https://unsplash.com"
+                  >
+                    Powerd by Unsplash
+                  </a>
+                </div>
                 <div className="categories-pop">
                   <ul>
                     {result.tags.map((tag, index) => (
@@ -135,30 +133,52 @@ const ImageModal = ({ isOpen, onClose, imageSrc }) => {
                 <h3>Related images</h3>
               </div>
               <div id="news-waterfall" className="grid">
-                <div className="box">
-                 <div className="content">
-                    
-                     <img src={result.user.links.photos} alt="test" />
-                    
-                    
-
-                    <div className="button-top">
-                      <FontAwesomeIcon
-                        icon={faHeart}
-                        className="icon heart-icon"
-                      />
+                <div className="content">
+                  {userImages.map((image) => (
+                    <div className="box">
+                      <div className="content">
+                        <div key={image.id}>
+                          <img
+                            src={image.urls.small}
+                            alt={image.alt_description}
+                            onClick={() => openModal(image)}
+                          />
+                          <div className="button-top">
+                            <FontAwesomeIcon
+                              icon={faHeart}
+                              className="icon heart-icon"
+                            />
+                          </div>
+                          <div className="button-bottom">
+                            <FontAwesomeIcon
+                              icon={faArrowDown}
+                              className="icon download-icon"
+                              onClick={() =>
+                                handleDownload(
+                                  image.urls.full,
+                                  image.alt_description + ".jpg"
+                                )
+                              }
+                            />
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                    <div className="button-bottom">
-                      <FontAwesomeIcon
-                        icon={faArrowDown}
-                        className="icon download-icon"
-                      />
-                    </div>
+                  ))}
+                  <div className="button-top">
+                    <FontAwesomeIcon
+                      icon={faHeart}
+                      className="icon heart-icon"
+                    />
+                  </div>
+                  <div className="button-bottom">
+                    <FontAwesomeIcon
+                      icon={faArrowDown}
+                      className="icon download-icon"
+                    />
                   </div>
                 </div>
-
               </div>
-
               <button onClick={onClose} className="close-button">
                 <FontAwesomeIcon icon={faXmark} />
               </button>

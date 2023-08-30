@@ -7,16 +7,12 @@ import { faHeart, faArrowDown } from "@fortawesome/free-solid-svg-icons";
 import SearchContext from "../Context/SearchContext";
 import { fetchSearchResults } from "../api/UseFetch";
 
-const ImageGrid = ({ handleCategoryClick }) => {
+const ImageGrid = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState("");
-  const catResult = handleCategoryClick;
-
-  console.log(catResult);
 
   const openModal = (imageSrc) => {
     setSelectedImage(imageSrc);
-    console.log("selectedImg :", imageSrc);
     setModalIsOpen(true);
   };
 
@@ -103,6 +99,7 @@ const ImageGrid = ({ handleCategoryClick }) => {
         isOpen={modalIsOpen}
         imageSrc={selectedImage}
         onClose={closeModal}
+        openModal={openModal}
       />
     </>
   );
