@@ -13,7 +13,7 @@ import SearchContext from "../Context/SearchContext";
 const NavBar = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
    const { setSearchResults } = useContext(SearchContext);
-   const [showImageGrid, setShowImageGrid] = useState(false); // State for ImageGrid visibility
+   const [showImageGrid, setShowImageGrid] = useState(false); 
 
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);

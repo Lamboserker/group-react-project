@@ -10,6 +10,7 @@ import {
   faShield,
   faArrowDown,
 } from "@fortawesome/free-solid-svg-icons";
+
 import SearchContext from "../Context/SearchContext";
 import { fetchSearchResults } from "../api/UseFetch";
 
@@ -37,6 +38,7 @@ const ImageModal = ({ isOpen, onClose, imageSrc }) => {
     }
   };
 
+
   useEffect(() => {
     // Handle search text-based fetching
     if (searchText) {
@@ -53,6 +55,7 @@ const ImageModal = ({ isOpen, onClose, imageSrc }) => {
   }, [searchText, setSearchResults]);
 
   
+
 
   return (
     <div>
@@ -85,6 +88,7 @@ const ImageModal = ({ isOpen, onClose, imageSrc }) => {
                       className="heart-icon-pop"
                     />
                   </button>
+
                   <button
                     className="btn-download-pop"
                     onClick={() =>
@@ -93,6 +97,7 @@ const ImageModal = ({ isOpen, onClose, imageSrc }) => {
                         result.alt_description + ".jpg"
                       )
                     }
+
                   >
                     Free download
                   </button>
@@ -151,6 +156,7 @@ const ImageModal = ({ isOpen, onClose, imageSrc }) => {
                     </div>
                   </div>
                 </div>
+
               </div>
 
               <button onClick={onClose} className="close-button">
