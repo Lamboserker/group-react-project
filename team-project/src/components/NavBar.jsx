@@ -95,7 +95,9 @@ const NavBar = () => {
               <button className="upload-button">Upload a picture!</button>
             </li>
             <li>
-              <button className="login-button">Login</button>
+              {/* <button className="login-button">Login */}
+              <Link to = "register" className="login-button">Login</Link>
+              {/* </button> */}
             </li>
           </ul>
         </div>
