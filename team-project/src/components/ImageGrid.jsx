@@ -3,26 +3,23 @@ import ModalComponent from "./ModalComponent";
 import "./styles/ImageGrid.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faArrowDown } from "@fortawesome/free-solid-svg-icons";
-
 import SearchContext from "../Context/SearchContext";
 import { fetchSearchResults } from "../api/UseFetch";
-
-const ImageGrid = () => {
+const ImageGrid = ({ handleCategoryClick }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [selectedImage, setSelectedImage] = useState("");
-
+  const [selectedImage, setSelectedImage] = useState();
+  const catResult = handleCategoryClick;
+  console.log(catResult);
   const openModal = (imageSrc) => {
     setSelectedImage(imageSrc);
     setModalIsOpen(true);
   };
-
   const closeModal = () => {
     setModalIsOpen(false);
-    setSelectedImage("");
+    setSelectedImage();
   };
   const { searchResults, setSearchResults, searchText } =
     useContext(SearchContext);
-
   useEffect(() => {
     // Handle search text-based fetching
     if (searchText) {
@@ -36,7 +33,6 @@ const ImageGrid = () => {
         });
     }
   }, [searchText, setSearchResults]);
-
   const handleDownload = async (url, imageName) => {
     try {
       const response = await fetch(url);
@@ -53,7 +49,6 @@ const ImageGrid = () => {
       console.error("Download error:", error);
     }
   };
-
   return (
     <>
       <section id="news-waterfall" className="grid">
@@ -91,9 +86,6 @@ const ImageGrid = () => {
           ))}
         </div>
       </section>
-      {/* <div className="showMore">
-        <button className="showMoreButton"> More Pictures </button>
-      </div> */}
       <ModalComponent
         isOpen={modalIsOpen}
         imageSrc={selectedImage}

@@ -2,7 +2,11 @@ import axios from "axios";
 
 const apiKey = process.env.REACT_APP_API_KEY;
 
-export const fetchSearchResults = async (searchQuery, page = 1, perPage = 100) => {
+export const fetchSearchResults = async (
+  searchQuery,
+  page = 1,
+  perPage = 100
+) => {
   try {
     const response = await axios.get(`https://api.unsplash.com/search/photos`, {
       params: {
@@ -19,4 +23,18 @@ export const fetchSearchResults = async (searchQuery, page = 1, perPage = 100) =
   }
 };
 
-
+export const fetchUserImages = async (url, page = 1, perPage = 40) => {
+  try {
+    const response = await axios.get(`${url}`, {
+      params: {
+        page: page,
+        per_page: perPage,
+        client_id: apiKey,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching search results:", error);
+    throw error;
+  }
+};

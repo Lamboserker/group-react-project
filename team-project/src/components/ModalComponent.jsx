@@ -11,7 +11,7 @@ import {
   faArrowDown,
 } from "@fortawesome/free-solid-svg-icons";
 import { faUnsplash } from "@fortawesome/free-brands-svg-icons";
-import { fetchSearchResults } from "../api/UseFetch";
+import { fetchUserImages } from "../api/UseFetch";
 const ImageModal = ({ isOpen, onClose, imageSrc, openModal }) => {
   const [userImages, setUserImages] = useState([]);
   const result = imageSrc;
@@ -33,15 +33,17 @@ const ImageModal = ({ isOpen, onClose, imageSrc, openModal }) => {
   };
   useEffect(() => {
     if (result) {
-      console.log("asldkjf", result);
+      console.log("user object", result);
       const userImagesURL = result.user.links.photos;
-      fetchSearchResults(userImagesURL)
-        .then((response) => {
-          setUserImages(response.results);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
+      fetchUserImages(userImagesURL)
+      .then((response) => {
+        setUserImages(response);
+        console.log("user related", response);
+        const usrRelated = response.map((image) => console.log('user image',image));
+      })
+      .catch((error) => {
+        console.error(error);
+      });
     }
   }, [result]);
   return (
@@ -58,13 +60,13 @@ const ImageModal = ({ isOpen, onClose, imageSrc, openModal }) => {
           >
             <div className="modal-container">
               <div className="navbar-pop">
-                <a href="/">
+                <a href={result.user.links.html}>
                   <div className="artist-info">
                     <div className="img-artist">
-                      <img src={result.user.profile_image.large} alt="/" />
+                      <img src={result.user.profile_image.large} alt="user" />
                     </div>
                     <div className="des-artist">
-                      <p style={{color: "black"}}>{result.user.name}</p>
+                      <p>{result.user.name}</p>
                     </div>
                   </div>
                 </a>
@@ -122,11 +124,11 @@ const ImageModal = ({ isOpen, onClose, imageSrc, openModal }) => {
                   </a>
                 </div>
                 <div className="categories-pop">
-                  <ul>
+                  {/* <ul>
                     {result.tags.map((tag, index) => (
                       <li key={index}>{tag.title}</li>
                     ))}
-                  </ul>
+                  </ul> */}
                 </div>
               </div>
               <div className="related-pop">
