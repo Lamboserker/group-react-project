@@ -1,0 +1,59 @@
+
+.bg{
+    background-image: url(https://cdn.discordapp.com/attachments/1139262150255329310/1146833817143877802/jr-korpa-_OQ8Jc7kBmA-unsplash.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    cursor: url("../../images/icons8-cursor-100.png"), default;
+    
+   
+}
+.main-container{
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+   
+   
+    
+    
+
+   
+}
+
+.number{
+    font-family: 'Rubik Bubbles', cursive;
+    color: white ;
+    font-size: 100px;
+}
+
+.pnf{
+    color: white;
+    font-family: 'Rubik Bubbles', cursive;
+   
+}
+
+.home{
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+}
+
+.image{
+    height: 90px;
+    cursor: url("../../images/icons8-select-cursor-100.png"), pointer;
+   
+    
+    
+    
+}
+
+link{
+    
+}
+
+/* FlashlightCursor.css */
+

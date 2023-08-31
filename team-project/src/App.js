@@ -7,8 +7,7 @@ import Blog from "./components/Blog";
 import Shop from "./components/Shop";
 import SearchProvider from "./Context/SearchProvider";
 import Register from "./components/Register";
-import SignIn from "./components/auth/SignIn";
-import AuthDetails from "./components/auth/AuthDetails";
+import PageNotFound from "./components/PageNotFound";
 function App() {
   return (
     <div className="App">
@@ -19,12 +18,11 @@ function App() {
               <Route index element={<LandingPage />} />
               <Route path="blog" element={<Blog />} />
               <Route path="shop" element={<Shop />} />
-
-              {/*<Route path="*" element={PageNotFound} />*/}
             </Route>
+            <Route path="*" element={<PageNotFound />} />
             <Route path="register" element={<Register />} />
-            <Route path="login" element={<SignIn />} />
-            <Route path="login" element={<AuthDetails />} />
+            
+            
           </Routes>
         </BrowserRouter>
       </SearchProvider>
