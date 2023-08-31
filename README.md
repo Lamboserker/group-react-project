@@ -1,6 +1,6 @@
 ![PixPulse Logo](https://i.imgur.com/24eXrQl.png)
 
-PixPulse is a cutting-edge web application designed for downloading high-quality pictures for free. With a user-friendly interface and seamless integration with the Unsplash API, PixPulse brings you a vast collection of captivating images contributed by the creative Unsplash community.
+#PixPulse is a cutting-edge web application designed for downloading high-quality pictures for free. With a user-friendly interface and seamless integration with the Unsplash API, PixPulse brings you a vast collection of captivating images contributed by the creative Unsplash community.
 
 ## Features
 
