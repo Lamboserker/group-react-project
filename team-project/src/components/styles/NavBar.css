@@ -121,39 +121,55 @@
   display: none;
 }
 
+.mobile-menu {
+  display: none;
+}
+
+.mobile-menu a {
+  text-decoration: none;
+}
+
+.mobile-menu.active {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width:190px;
+  padding: 20px;
+  background-color: rgba(80, 80, 80, 0.37);
+  border-bottom-left-radius: 3px;
+  text-align: center;
+  font-size: 20px;
+}
+
+
 .mobile-menu-button {
   display: none;
   background: none;
   border: none;
   cursor: pointer;
   color: #dad7d7;
-  font-size: 20px;
+  font-size:35px;
 }
 
 .mobile-menu-button.active {
-  color: #00a47b; /* Change the color when active */
-
-}
-
-/* CSS */
-/* Add this to your existing CSS */
-.mobile-menu-button {
-  display: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: #dad7d7;
-  font-size: 20px;
-}
-
-.mobile-menu-button.active {
-  color: #00a47b; /* Change the color when active */
+    position: relative;
+    top: -40px;
+    right: 120px;
 }
 
 /* For screens up to 768px (Tablet and Mobile) */
-@media (max-width: 768px) {
+@media (max-width: 1100px) {
   .mobile-menu-button {
-    display: block;
+   display: flex;
+  }
+
+  .mobile-menu {
+    display: none;
+  }
+
+  .mobile-menu li {
+    padding: 6px;
+    list-style: none;
   }
 
   .desktop-menu {
@@ -166,5 +182,30 @@
 
   .mobile-menu.active {
     display: block;
+  }
+}
+
+@media (max-width: 768px) {
+  .mobile-menu.active {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width:150px;
+    padding:10px;
+    background-color: rgba(80, 80, 80, 0.462);
+    border-bottom-left-radius: 3px;
+    text-align: center;
+    font-size: 16px;
+  }
+
+  .mobile-menu-button {
+    font-size:30px;
+    
+  }
+  
+  .mobile-menu-button.active {
+      position: relative;
+      top: -40px;
+      right: 80px;
   }
 }
