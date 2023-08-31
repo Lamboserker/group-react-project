@@ -28,8 +28,8 @@
 
 ## Contributing
 
-## ![Ismael](https://github.com/ismael-101)
-## ![Alejandro](https://github.com/askeegan) 
+## [Ismael](https://github.com/ismael-101)
+## [Alejandro](https://github.com/askeegan) 
 
 ## Contact Us
 
