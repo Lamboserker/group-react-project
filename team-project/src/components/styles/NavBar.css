@@ -45,7 +45,7 @@ body {
 }
 
 .login-button {
-  background-color: #329713;
+  background-color: #008060;
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -56,7 +56,7 @@ body {
 }
 
 .login-button:hover {
-  background-color: #34d503;
+  background-color: #00a47b;
 }
 
 .upload-button {

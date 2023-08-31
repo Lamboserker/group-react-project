@@ -18,9 +18,10 @@ function App() {
               <Route index element={<LandingPage />} />
               <Route path="blog" element={<Blog />} />
               <Route path="shop" element={<Shop />} />
-              <Route path="register" element={<Register />} />
+              
               {/*<Route path="*" element={PageNotFound} />*/}
             </Route>
+            <Route path="register" element={<Register />} />
           </Routes>
         </BrowserRouter>
       </SearchProvider>

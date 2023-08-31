@@ -6,6 +6,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "../api/axios";
+import "./styles/Register.css";
+import logo from "../images/PULSE-negative.png";
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
@@ -87,16 +89,16 @@ const Register = () => {
   };
 
   return (
-    <>
+    <div className="App-1">
       {success ? (
-        <section>
+        <section className="section-1">
           <h1>Success!</h1>
           <p>
             <a href="#">Sign In</a>
           </p>
         </section>
       ) : (
-        <section>
+        <section className="section-1">
           <p
             ref={errRef}
             className={errMsg ? "errmsg" : "offscreen"}
@@ -104,9 +106,17 @@ const Register = () => {
           >
             {errMsg}
           </p>
-          <h1>Register</h1>
-          <form onSubmit={handleSubmit}>
-            <label htmlFor="username">
+          <div className="section-top">
+            <a href="/">
+              <img className="logo-login" src={logo} alt="logo" />
+            </a>
+
+            <h1 className="register">Sign Up</h1>
+            <p>Unlock Your Creative Journey: Register and Explore!</p>
+          </div>
+
+          <form className="form-1" onSubmit={handleSubmit}>
+            <label className="label-1" htmlFor="username">
               Username:
               <FontAwesomeIcon
                 icon={faCheck}
@@ -118,6 +128,7 @@ const Register = () => {
               />
             </label>
             <input
+              className="input-1"
               type="text"
               id="username"
               ref={userRef}
@@ -144,7 +155,7 @@ const Register = () => {
               Letters, numbers, underscores, hyphens allowed.
             </p>
 
-            <label htmlFor="password">
+            <label className="label-1" htmlFor="password">
               Password:
               <FontAwesomeIcon
                 icon={faCheck}
@@ -156,6 +167,7 @@ const Register = () => {
               />
             </label>
             <input
+              className="input-1"
               type="password"
               id="password"
               onChange={(e) => setPwd(e.target.value)}
@@ -184,7 +196,7 @@ const Register = () => {
               <span aria-label="percent">%</span>
             </p>
 
-            <label htmlFor="confirm_pwd">
+            <label className="label-1" htmlFor="confirm_pwd">
               Confirm Password:
               <FontAwesomeIcon
                 icon={faCheck}
@@ -196,6 +208,7 @@ const Register = () => {
               />
             </label>
             <input
+              className="input-1"
               type="password"
               id="confirm_pwd"
               onChange={(e) => setMatchPwd(e.target.value)}
@@ -217,22 +230,25 @@ const Register = () => {
             </p>
 
             <button
+              className="button-1 sign-up"
               disabled={!validName || !validPwd || !validMatch ? true : false}
             >
               Sign Up
             </button>
           </form>
-          <p>
-            Already registered?
-            <br />
-            <span className="line">
-              {/*put router link here*/}
-              <a href="/">Sign In</a>
-            </span>
-          </p>
+          <div className="register-end">
+            <p>
+              Already registered?
+              <br />
+              <span className="line">
+                {/*put router link here*/}
+                <a href="/">Sign In</a>
+              </span>
+            </p>
+          </div>
         </section>
       )}
-    </>
+    </div>
   );
 };
 
