@@ -26,7 +26,7 @@
 - CSS
 - Unsplash API
 
-## Contributing
+## Contributors
 
 ## [Ismael](https://github.com/ismael-101)
 ## [Alejandro](https://github.com/askeegan) 
