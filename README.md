@@ -31,8 +31,6 @@
 ## [Ismael](https://github.com/ismael-101)
 ## [Alejandro](https://github.com/askeegan) 
 
-## Contact Us
 
-Got questions or suggestions? Feel free to reach out to us at contact@pixpulse.com.
 
 Happy downloading!
