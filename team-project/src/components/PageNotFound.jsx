@@ -1,5 +1,4 @@
 import React, {useRef,useEffect} from 'react';
-import {Link} from 'react-router-dom';
 import './styles/PageNotFound.css';
 import Logo from '../images/PULSE.png';
 const PageNotFound = () => {
@@ -21,21 +20,23 @@ const PageNotFound = () => {
       };
     }, []);
   return (
+    
     <div className="bg">
     <div className="flashlight-cursor" ref={flashlightRef}>
       <div className="cursor"></div>
     </div>
     <div className="home">
       <p className="pnf">Go back to</p>
-      <Link to="/">
-        <img src={Logo} alt="logo_image" className="image" />
-      </Link>
+      <a href='/' className='logo'>
+        <img src={Logo} alt="logo" />
+      </a>
     </div>
     <div className="main-container">
       <p className="number">404</p>
       <p className="pnf"> PAGE NOT FOUND</p>
     </div>
   </div>
+  
   
     
   )

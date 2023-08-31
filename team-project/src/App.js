@@ -21,6 +21,7 @@ function App() {
             </Route>
             <Route path="*" element={<PageNotFound />} />
             <Route path="register" element={<Register />} />
+           
             
             
           </Routes>
