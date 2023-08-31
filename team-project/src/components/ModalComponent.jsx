@@ -61,10 +61,10 @@ const ImageModal = ({ isOpen, onClose, imageSrc, openModal }) => {
                 <a href="/">
                   <div className="artist-info">
                     <div className="img-artist">
-                      <img src={result.user.profile_image.small} alt="/" />
+                      <img src={result.user.profile_image.large} alt="/" />
                     </div>
                     <div className="des-artist">
-                      <p>{result.user.name}</p>
+                      <p style={{color: "black"}}>{result.user.name}</p>
                     </div>
                   </div>
                 </a>

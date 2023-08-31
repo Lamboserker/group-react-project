@@ -4,16 +4,13 @@ import ImageGrid from "./ImageGrid";
 import SearchBar from "./SearchBar";
 import SearchContext from "../Context/SearchContext";
 import { fetchSearchResults } from "../api/UseFetch";
-
 const LandingPage = () => {
   const [showImageGrid, setShowImageGrid] = useState(false); // State for ImageGrid visibility
   const { setSearchResults } = useContext(SearchContext);
-
   const handleCategoryClick = async (category) => {
     // Trigger the fetchNature function and handle the data
     try {
       const natureData = await fetchSearchResults(category);
-
       // Handle the natureData as needed
       console.log(natureData);
       setSearchResults(natureData.results);
@@ -22,7 +19,6 @@ const LandingPage = () => {
       console.error("Error fetching nature data:", error);
     }
   };
-
   return (
     <>
       <section
@@ -36,7 +32,6 @@ const LandingPage = () => {
             </h1>
           </div>
           <SearchBar />
-
           <div className="popular">
             <p>Popular categories: </p>
             <ul className="pop-categories">
@@ -49,7 +44,7 @@ const LandingPage = () => {
                     fontSize: "16px",
                     marginRight: "0.4rem",
                     cursor: "pointer",
-                    textDecoration: "underline"
+                    textDecoration: "underline",
                   }}
                   onClick={() => handleCategoryClick("nature")}
                   rel="noopener noreferrer"
@@ -58,7 +53,7 @@ const LandingPage = () => {
                 </button>
               </li>
               <li>
-              <button
+                <button
                   style={{
                     background: "none",
                     color: "white",
@@ -66,7 +61,7 @@ const LandingPage = () => {
                     fontSize: "16px",
                     marginRight: "0.4rem",
                     cursor: "pointer",
-                    textDecoration: "underline"
+                    textDecoration: "underline",
                   }}
                   onClick={() => handleCategoryClick("wallpapers")}
                   rel="noopener noreferrer"
@@ -75,7 +70,7 @@ const LandingPage = () => {
                 </button>
               </li>
               <li>
-              <button
+                <button
                   style={{
                     background: "none",
                     color: "white",
@@ -83,7 +78,7 @@ const LandingPage = () => {
                     fontSize: "16px",
                     marginRight: "0.4rem",
                     cursor: "pointer",
-                    textDecoration: "underline"
+                    textDecoration: "underline",
                   }}
                   onClick={() => handleCategoryClick("cities")}
                   rel="noopener noreferrer"
@@ -92,7 +87,7 @@ const LandingPage = () => {
                 </button>
               </li>
               <li>
-              <button
+                <button
                   style={{
                     background: "none",
                     color: "white",
@@ -100,7 +95,7 @@ const LandingPage = () => {
                     fontSize: "16px",
                     marginRight: "0.4rem",
                     cursor: "pointer",
-                    textDecoration: "underline"
+                    textDecoration: "underline",
                   }}
                   onClick={() => handleCategoryClick("Architecture")}
                   rel="noopener noreferrer"
@@ -116,5 +111,4 @@ const LandingPage = () => {
     </>
   );
 };
-
 export default LandingPage;

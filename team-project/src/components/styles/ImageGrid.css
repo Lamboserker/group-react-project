@@ -4,25 +4,22 @@
     padding: 120px 80px;
   }
 }
-
 #news-waterfall {
-  column-count: 3;
+  column-count: 1;
   column-gap: 20px;
   word-wrap: break-word;
   width: 100%;
   margin: auto;
   padding-bottom: 40px;
-
   @media (min-width: 768px) {
     column-count: 2;
     column-gap: 30px;
   }
   @media (min-width: 992px) {
-    column-count: 1;
+    column-count: 3;
     column-gap: 50px;
   }
 }
-
 #news-waterfall .box {
   position: relative;
   box-shadow: 3px 0px 10px 0px rgba(33, 33, 33, 0.378);
@@ -93,4 +90,3 @@
   background-color: #000;
   color: #fff;
 }
-

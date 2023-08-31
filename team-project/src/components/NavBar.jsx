@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { Link, Outlet } from "react-router-dom";
 import PixPulseLogo from "../images/PULSE.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faAngleDown } from "@fortawesome/free-solid-svg-icons"; // Import the Hamburger icon
 import "./styles/NavBar.css";
 import { fetchSearchResults } from "../api/UseFetch";
 import ImageGrid from "./ImageGrid";
@@ -12,9 +12,14 @@ const NavBar = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const { setSearchResults } = useContext(SearchContext);
   const [showImageGrid, setShowImageGrid] = useState(false);
+  const [showMobileMenu, setShowMobileMenu] = useState(false); // State for mobile menu
 
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
+  };
+
+  const toggleMobileMenu = () => {
+    setShowMobileMenu(!showMobileMenu);
   };
 
   const handleCategoryClick = async (category) => {
@@ -40,7 +45,18 @@ const NavBar = () => {
           </a>
         </div>
 
-        <div>
+      {/* Hamburger Menu Button for Mobile and Tablet */}
+      <button
+          className={`mobile-menu-button ${showMobileMenu ? "active" : ""}`}
+          onClick={toggleMobileMenu}
+        >
+          <FontAwesomeIcon icon={faBars} />
+        </button>
+
+     
+
+        {/* Regular Desktop Menu */}
+        <div className={`desktop-menu ${showMobileMenu ? "hide-desktop-menu" : ""}`}>
           <ul id="navbar">
             <li className={`dropdown ${dropdownOpen ? "clicked" : ""}`}>
               <a
@@ -156,10 +172,26 @@ const NavBar = () => {
               <Link to="/register" className="login-button">
                 Login
               </Link>
-              {/* </button> */}
             </li>
           </ul>
         </div>
+           {/* Mobile Menu */}
+           <div className={`mobile-menu ${showMobileMenu ? "active" : ""}`}>
+            <ul>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/shop">Shop</Link>
+              </li>
+              <li>
+                <Link to="/blog">Blog</Link>
+              </li>
+              <li>
+                <Link to="/register">Login</Link>
+              </li>
+            </ul>
+          </div>
       </section>
 
       <Outlet />

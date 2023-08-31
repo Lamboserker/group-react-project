@@ -1,14 +1,3 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Cabin", sans-serif;
-}
-
-body {
-  width: 100%;
-}
-
 /* Navigation bar */
 .logo-img {
   width: 120px;
@@ -127,3 +116,55 @@ body {
   text-align: center;
 }
 
+/* Add this to your CSS */
+.hide-desktop-menu {
+  display: none;
+}
+
+.mobile-menu-button {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #dad7d7;
+  font-size: 20px;
+}
+
+.mobile-menu-button.active {
+  color: #00a47b; /* Change the color when active */
+
+}
+
+/* CSS */
+/* Add this to your existing CSS */
+.mobile-menu-button {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #dad7d7;
+  font-size: 20px;
+}
+
+.mobile-menu-button.active {
+  color: #00a47b; /* Change the color when active */
+}
+
+/* For screens up to 768px (Tablet and Mobile) */
+@media (max-width: 768px) {
+  .mobile-menu-button {
+    display: block;
+  }
+
+  .desktop-menu {
+    display: none;
+  }
+
+  .mobile-menu {
+    display: none;
+  }
+
+  .mobile-menu.active {
+    display: block;
+  }
+}

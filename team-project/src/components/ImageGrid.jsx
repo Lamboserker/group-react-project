@@ -94,7 +94,6 @@ const ImageGrid = () => {
       {/* <div className="showMore">
         <button className="showMoreButton"> More Pictures </button>
       </div> */}
-
       <ModalComponent
         isOpen={modalIsOpen}
         imageSrc={selectedImage}
