@@ -2,7 +2,11 @@ import React, { useState, useContext } from "react";
 import { Link, Outlet } from "react-router-dom";
 import PixPulseLogo from "../images/PULSE.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faAngleDown } from "@fortawesome/free-solid-svg-icons"; // Import the Hamburger icon
+import {
+  faBars,
+  faAngleDown,
+  faXmark,
+} from "@fortawesome/free-solid-svg-icons"; // Import the Hamburger icon
 import "./styles/NavBar.css";
 import { fetchSearchResults } from "../api/UseFetch";
 import ImageGrid from "./ImageGrid";
@@ -13,6 +17,7 @@ const NavBar = () => {
   const { setSearchResults } = useContext(SearchContext);
   const [showImageGrid, setShowImageGrid] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false); // State for mobile menu
+  const [active, setActive] = useState(false);
 
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
@@ -45,18 +50,24 @@ const NavBar = () => {
           </a>
         </div>
 
-      {/* Hamburger Menu Button for Mobile and Tablet */}
-      <button
+        {/* Hamburger Menu Button for Mobile and Tablet */}
+        <button
           className={`mobile-menu-button ${showMobileMenu ? "active" : ""}`}
           onClick={toggleMobileMenu}
         >
-          <FontAwesomeIcon icon={faBars} />
+          {showMobileMenu ? (
+            <FontAwesomeIcon icon={faXmark} />
+          ) : (
+            <FontAwesomeIcon icon={faBars} />
+          )}
         </button>
 
-     
-
         {/* Regular Desktop Menu */}
-        <div className={`desktop-menu ${showMobileMenu ? "hide-desktop-menu" : ""}`}>
+        <div
+          className={`desktop-menu ${
+            showMobileMenu ? "hide-desktop-menu" : ""
+          }`}
+        >
           <ul id="navbar">
             <li className={`dropdown ${dropdownOpen ? "clicked" : ""}`}>
               <a
@@ -175,23 +186,23 @@ const NavBar = () => {
             </li>
           </ul>
         </div>
-           {/* Mobile Menu */}
-           <div className={`mobile-menu ${showMobileMenu ? "active" : ""}`}>
-            <ul>
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li>
-                <Link to="/shop">Shop</Link>
-              </li>
-              <li>
-                <Link to="/blog">Blog</Link>
-              </li>
-              <li>
-                <Link to="/register">Login</Link>
-              </li>
-            </ul>
-          </div>
+        {/* Mobile Menu */}
+        <div className={`mobile-menu ${showMobileMenu ? "active" : ""}`}>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/shop">Shop</Link>
+            </li>
+            <li>
+              <Link to="/blog">Blog</Link>
+            </li>
+            <li>
+              <Link to="/register">Login</Link>
+            </li>
+          </ul>
+        </div>
       </section>
 
       <Outlet />
