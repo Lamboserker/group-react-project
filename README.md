@@ -1,7 +1,6 @@
-# PixPulse - Your Source for Free Pictures
-
 ![PixPulse Logo](https://i.imgur.com/24eXrQl.png)
 
+# PixPulse - Your Source for Free Pictures
 
 Welcome to PixPulse, your one-stop destination for high-quality free pictures! Whether you're a web developer, blogger, designer, or simply someone who loves beautiful visuals, PixPulse has got you covered.
 
