@@ -71,6 +71,21 @@ const NavBar = () => {
                       Cars
                     </a>
                   </li>
+                  <li>
+                    <a onClick={()=>handleCategoryClick("countries")} rel="noopener noreferrer">
+                      Countries
+                    </a>
+                  </li>
+                  <li>
+                    <a onClick={()=>handleCategoryClick("landscape")} rel="noopener noreferrer">
+                      Landscape
+                    </a>
+                  </li>
+                  <li>
+                    <a onClick={()=>handleCategoryClick("comic")} rel="noopener noreferrer">
+                      Comic
+                    </a>
+                  </li>
                 </ul>
                 <ul className="column right-content">
                   <li>
@@ -82,11 +97,24 @@ const NavBar = () => {
                     </a>
                   </li>
                   <li>
-                    <a
-                      onClick={() => handleCategoryClick("animals")}
-                      rel="noopener noreferrer"
-                    >
+
+                    <a onClick={()=>handleCategoryClick("events")} rel="noopener noreferrer">
+                      Events
+                    </a>
+                  </li>
+                  <li>
+                    <a onClick={()=>handleCategoryClick("winter")} rel="noopener noreferrer">
+                      Winter
+                    </a>
+                  </li>
+                  <li>
+                    <a onClick={()=>handleCategoryClick("animals")} rel="noopener noreferrer">
                       Animals
+                    </a>
+                  </li>
+                  <li>
+                    <a onClick={()=>handleCategoryClick("arts")} rel="noopener noreferrer">
+                      Arts
                     </a>
                   </li>
                 </ul>
@@ -106,9 +134,11 @@ const NavBar = () => {
             </li>
             <li>
               {/* <button className="login-button">Login */}
+
               <Link to="/register" className="login-button">
                 Login
               </Link>
+              <Link to = "/register" className="login-button">Login</Link>
               {/* </button> */}
             </li>
           </ul>

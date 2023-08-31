@@ -2,7 +2,7 @@ import axios from "axios";
 
 const apiKey = process.env.REACT_APP_API_KEY;
 
-export const fetchSearchResults = async (searchQuery, page = 1, perPage = 40) => {
+export const fetchSearchResults = async (searchQuery, page = 1, perPage = 100) => {
   try {
     const response = await axios.get(`https://api.unsplash.com/search/photos`, {
       params: {
