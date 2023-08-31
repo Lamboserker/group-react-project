@@ -1,4 +1,5 @@
 import { useRef, useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import {
   faCheck,
   faTimes,
@@ -67,12 +68,11 @@ const Register = () => {
           withCredentials: true,
         }
       );
-      console.log(response?.data);
-      console.log(response?.accessToken);
-      console.log(JSON.stringify(response));
+      // TODO: remove console.logs before deployment
+      console.log(JSON.stringify(response?.data));
+      //console.log(JSON.stringify(response))
       setSuccess(true);
       //clear state and controlled inputs
-      //need value attrib on inputs for this
       setUser("");
       setPwd("");
       setMatchPwd("");
@@ -94,7 +94,7 @@ const Register = () => {
         <section className="section-1">
           <h1>Success!</h1>
           <p>
-            <a href="#">Sign In</a>
+            <Link to="/login">Sign In</Link>
           </p>
         </section>
       ) : (
@@ -242,7 +242,7 @@ const Register = () => {
               <br />
               <span className="line">
                 {/*put router link here*/}
-                <a href="/">Sign In</a>
+                <Link to="/login">Sign In</Link>
               </span>
             </p>
           </div>
