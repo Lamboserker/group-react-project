@@ -28,10 +28,11 @@
 
 ## Contributing
 
-We welcome contributions from the open-source community! If you'd like to improve PixPulse or add new features, feel free to submit a pull request.
+## ![Ismael](https://github.com/ismael-101)
+## ![Alejandro](https://github.com/askeegan) 
 
 ## Contact Us
 
-Got questions or suggestions? Feel free to reach out to us at contact@pixpulse.com or join our [Discord community](link-to-discord-channel).
+Got questions or suggestions? Feel free to reach out to us at contact@pixpulse.com.
 
 Happy downloading!
