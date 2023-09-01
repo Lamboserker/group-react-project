@@ -1,13 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
 
-.App-1 {
+/* Gemeinsame Stile für Registrierungs- und Login-Seiten */
+.App-2 {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
   padding: 1rem 0.5rem;
-  
 }
 
 .section-1 {
@@ -18,13 +18,12 @@
   flex-direction: column;
   justify-content: flex-start;
   padding: 1rem;
-  
 }
 
 .section-1 h1,
 .section-1 p,
 .section-1 label {
-    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: "Nunito", sans-serif;
 }
 
 .section-top {
@@ -39,8 +38,8 @@
   margin: auto;
 }
 
-.register {
-  margin-top: -20px; 
+.login {
+  margin-top: -20px;
   margin-bottom: 20px;
 }
 
@@ -57,19 +56,27 @@ a:visited {
   color: #fff;
 }
 
+/* Stile für Input-Felder, Labels und Button */
 .input-1[type="email"],
 .input-1[type="password"],
-.button-1,
-textarea {
+.button-1 {
   font-family: "Nunito", sans-serif;
   font-size: 22px;
-  padding: 0.25rem;
+  padding: 0.5rem;
   border-radius: 3px;
   border: 1px solid black;
+  width: 100%; /* Vollbreite für Input-Felder */
 }
 
 .input-1 {
   margin-bottom: 8px;
+}
+
+/* Stile für .input-label */
+.input-label {
+  display: flex;
+  flex-direction: column;
+  width: 100%; /* Vollbreite für Input-Felder und Labels */
 }
 
 .label-1 {
@@ -85,6 +92,7 @@ textarea {
   padding: 0.5rem;
 }
 
+/* Stile für Validierungsanweisungen */
 .instructions {
   font-size: 0.75rem;
   border-radius: 0.5rem;
@@ -99,6 +107,7 @@ textarea {
   margin-right: 0.25rem;
 }
 
+/* Stile für Elemente, die nicht sichtbar sein sollen */
 .offscreen {
   position: absolute;
   left: -9999px;
@@ -108,6 +117,7 @@ textarea {
   display: none;
 }
 
+/* Stile für Validierungsmarkierungen */
 .valid {
   color: limegreen;
   margin-left: 0.25rem;
@@ -118,6 +128,7 @@ textarea {
   margin-left: 0.25rem;
 }
 
+/* Stile für Fehlermeldung */
 .errmsg {
   background-color: lightpink;
   color: firebrick;
@@ -130,7 +141,8 @@ textarea {
   display: inline-block;
 }
 
-.sign-up {
+/* Stile für den Anmeldebutton */
+.sign-in {
   background-color: #008060;
   transition: 0.5s ease;
   color: #fff;
@@ -139,10 +151,11 @@ textarea {
   margin-bottom: 10px;
 }
 
-.sign-up:hover {
+.sign-in:hover {
   background-color: #00a47b;
 }
 
+/* Stile für das Ende der Registrierungs-/Login-Seite */
 .register-end {
   text-align: center;
 }

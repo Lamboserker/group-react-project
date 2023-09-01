@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Link, Outlet } from "react-router-dom";
 import PixPulseLogo from "../images/PULSE.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -11,13 +11,16 @@ import "./styles/NavBar.css";
 import { fetchSearchResults } from "../api/UseFetch";
 import ImageGrid from "./ImageGrid";
 import SearchContext from "../Context/SearchContext";
-
+import AuthDetails from "./AuthDetails";
+import { onAuthStateChanged, signOut } from "firebase/auth";
+import {auth} from "../firebase";
+ 
 const NavBar = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const { setSearchResults } = useContext(SearchContext);
   const [showImageGrid, setShowImageGrid] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false); // State for mobile menu
-  const [active, setActive] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
@@ -40,6 +43,22 @@ const NavBar = () => {
       console.error("Error fetching nature data:", error);
     }
   };
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // Der Benutzer ist angemeldet.
+        setIsLoggedIn(true);
+      } else {
+        // Der Benutzer ist nicht angemeldet.
+        setIsLoggedIn(false);
+      }
+    });
+  
+    // Rückgabefunktion, um das Abhören bei der Demontage der Komponente zu stoppen.
+    return () => unsubscribe();
+  }, []);
+  
 
   return (
     <>
@@ -171,7 +190,7 @@ const NavBar = () => {
               <Link to="/">Home</Link>
             </li>
             <li>
-              <Link to="/shop">Shop</Link>
+              <Link to="/myProfile">myProfile</Link>
             </li>
             <li>
               <Link to="/blog">Blog</Link>
@@ -184,6 +203,9 @@ const NavBar = () => {
                 Login
               </Link>
             </li>
+            <li>
+              <AuthDetails />
+            </li>
           </ul>
         </div>
         {/* Mobile Menu */}
@@ -193,13 +215,16 @@ const NavBar = () => {
               <Link to="/">Home</Link>
             </li>
             <li>
-              <Link to="/shop">Shop</Link>
+              <Link to="/myProfile">my profile</Link>
             </li>
             <li>
               <Link to="/blog">Blog</Link>
             </li>
             <li>
               <Link to="/register">Login</Link>
+            </li>
+            <li>
+              <AuthDetails />
             </li>
           </ul>
         </div>

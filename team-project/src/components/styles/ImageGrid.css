@@ -20,6 +20,26 @@
     column-gap: 50px;
   }
 }
+
+/* #news-waterfall {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-gap: 20px;
+  width: 100%;
+  margin: auto;
+  padding-bottom: 40px;
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 30px;
+  }
+  @media (min-width: 992px) {
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 50px;
+  }
+} */
+
+
+
 #news-waterfall .box {
   position: relative;
   box-shadow: 3px 0px 10px 0px rgba(33, 33, 33, 0.378);
