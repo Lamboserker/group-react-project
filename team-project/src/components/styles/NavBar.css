@@ -116,7 +116,6 @@
   text-align: center;
 }
 
-/* Add this to your CSS */
 .hide-desktop-menu {
   display: none;
 }
@@ -157,7 +156,7 @@
     right: 120px;
 }
 
-/* For screens up to 768px (Tablet and Mobile) */
+
 @media (max-width: 1100px) {
   .mobile-menu-button {
    display: flex;
@@ -186,26 +185,34 @@
 }
 
 @media (max-width: 768px) {
+  #header .logo{
+    margin-left: -40px;
+  }
+
   .mobile-menu.active {
     position: absolute;
     top: 0;
     right: 0;
     width:150px;
-    padding:10px;
-    background-color: rgba(80, 80, 80, 0.462);
+    padding: 20px;
+    background-color: rgba(80, 80, 80, 0.73);
     border-bottom-left-radius: 3px;
     text-align: center;
-    font-size: 16px;
+    font-size: 20px;
+  }
+
+  .mobile-menu.active li {
+    padding: 10px 0;
   }
 
   .mobile-menu-button {
     font-size:30px;
-    
+    margin-right: -40px;
   }
   
   .mobile-menu-button.active {
       position: relative;
       top: -40px;
-      right: 80px;
+      right: 120px;
   }
 }
