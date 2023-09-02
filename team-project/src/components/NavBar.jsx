@@ -190,18 +190,13 @@ const NavBar = () => {
               <Link to="/">Home</Link>
             </li>
             <li>
-              <Link to="/myProfile">myProfile</Link>
+              <Link to="/myProfile">View profile</Link>
             </li>
             <li>
               <Link to="/blog">Blog</Link>
             </li>
             <li className="left-border">
               <button className="upload-button">Upload a picture!</button>
-            </li>
-            <li>
-              <Link to="/register" className="login-button">
-                Login
-              </Link>
             </li>
             <li>
               <AuthDetails />
@@ -215,7 +210,7 @@ const NavBar = () => {
               <Link to="/">Home</Link>
             </li>
             <li>
-              <Link to="/myProfile">my profile</Link>
+              <Link to="/myProfile">View profile</Link>
             </li>
             <li>
               <Link to="/blog">Blog</Link>

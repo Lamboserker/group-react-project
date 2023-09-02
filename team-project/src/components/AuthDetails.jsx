@@ -1,5 +1,6 @@
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import React, { useEffect, useState } from "react";
+import {Link} from 'react-router-dom'
 import { auth } from "../firebase";
 import './styles/Auth.css'
 
@@ -32,11 +33,15 @@ const AuthDetails = () => {
     <div>
       {authUser ? (
         <>
-          
           <button onClick={userSignOut} className="logout-button">Sign Out</button>
         </>
       ) : (
-        <p>Signed Out</p>
+        <>
+          {/* Nur anzeigen, wenn nicht angemeldet */}
+          <Link to="/register" className="login-button">
+            Login
+          </Link>
+        </>
       )}
     </div>
   );

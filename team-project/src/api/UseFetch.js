@@ -5,7 +5,8 @@ const apiKey = process.env.REACT_APP_API_KEY;
 export const fetchSearchResults = async (
   searchQuery,
   page = 1,
-  perPage = 100
+  perPage = 100,
+  order_by = 'popular'
 ) => {
   try {
     const response = await axios.get(`https://api.unsplash.com/search/photos`, {
@@ -14,6 +15,7 @@ export const fetchSearchResults = async (
         page: page,
         per_page: perPage,
         client_id: apiKey,
+       order_by: order_by,
       },
     });
     return response.data;
