@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import NavBar from "./components/NavBar";
 import LandingPage from "./components/LandingPage";
@@ -14,7 +14,7 @@ function App() {
   return (
     <div className="App">
       <SearchProvider>
-        <BrowserRouter>
+        <HashRouter>
           <Routes>
             <Route path="/" element={<NavBar />}>
               <Route index element={<LandingPage />} />
@@ -29,7 +29,7 @@ function App() {
             
             
           </Routes>
-        </BrowserRouter>
+        </HashRouter>
       </SearchProvider>
     </div>
   );
