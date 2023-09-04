@@ -5,9 +5,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faArrowDown } from "@fortawesome/free-solid-svg-icons";
 import SearchContext from "../Context/SearchContext";
 import { fetchSearchResults } from "../api/UseFetch";
+
+
 const ImageGrid = ({ handleCategoryClick }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState();
+
+  
   const catResult = handleCategoryClick;
   console.log(catResult);
   const openModal = (imageSrc) => {
@@ -20,6 +24,8 @@ const ImageGrid = ({ handleCategoryClick }) => {
   };
   const { searchResults, setSearchResults, searchText } =
     useContext(SearchContext);
+
+
   useEffect(() => {
     // Handle search text-based fetching
     if (searchText) {
@@ -33,6 +39,7 @@ const ImageGrid = ({ handleCategoryClick }) => {
         });
     }
   }, [searchText, setSearchResults]);
+  
   const handleDownload = async (url, imageName) => {
     try {
       const response = await fetch(url);
@@ -53,6 +60,7 @@ const ImageGrid = ({ handleCategoryClick }) => {
     <>
       <section id="news-waterfall" className="grid">
         <div>
+          
           {searchResults.map((result) => (
             <div key={result.id}>
               <div className="box">

@@ -9,6 +9,7 @@ import SearchProvider from "./Context/SearchProvider";
 import Register from "./components/Register";
 import Login from "./components/Login";
 import PageNotFound from "./components/PageNotFound";
+import ToBecontinued from "./components/ToBecontinued";
 function App() {
   return (
     <div className="App">
@@ -21,6 +22,7 @@ function App() {
               <Route path="myProfile" element={<myProfile />} />
             </Route>
             <Route path="*" element={<PageNotFound />} />
+            <Route path="tbc" element={<ToBecontinued />} />
             <Route path="register" element={<Register />} />
             <Route path="login" element={<Login />} />
            

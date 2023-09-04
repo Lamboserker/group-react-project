@@ -7,6 +7,10 @@ import { fetchSearchResults } from "../api/UseFetch";
 const LandingPage = () => {
   const [showImageGrid, setShowImageGrid] = useState(false); // State for ImageGrid visibility
   const { setSearchResults } = useContext(SearchContext);
+
+
+
+  
   const handleCategoryClick = async (category) => {
     // Trigger the fetchNature function and handle the data
     try {
@@ -107,7 +111,11 @@ const LandingPage = () => {
           </div>
         </div>
       </section>
-      <ImageGrid handleCategoryClick={handleCategoryClick} />
+      {showImageGrid ? (
+        <ImageGrid handleCategoryClick={handleCategoryClick} />
+      ) : (
+        <p>Loading random images...</p>
+      )}
     </>
   );
 };

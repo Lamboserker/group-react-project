@@ -190,10 +190,10 @@ const NavBar = () => {
               <Link to="/">Home</Link>
             </li>
             <li>
-              <Link to="/myProfile">View profile</Link>
+              <Link to="/tbc">View profile</Link>
             </li>
             <li>
-              <Link to="/blog">Blog</Link>
+              <Link to="/tbc">Blog</Link>
             </li>
             <li className="left-border">
               <button className="upload-button">Upload a picture!</button>
@@ -210,10 +210,10 @@ const NavBar = () => {
               <Link to="/">Home</Link>
             </li>
             <li>
-              <Link to="/myProfile">View profile</Link>
+              <Link to="/tbc">View profile</Link>
             </li>
             <li>
-              <Link to="/blog">Blog</Link>
+              <Link to="/tbc">Blog</Link>
             </li>
             <li>
               <Link to="/register">Login</Link>

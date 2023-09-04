@@ -23,7 +23,7 @@ const Login = () => {
       if (response.user.accessToken) {
         // success login
         setErrMsg("");
-        navigate("/myProfile"); // navigate to my profile component
+        navigate("/tbc"); // navigate to my profile component
       } else {
         setErrMsg("Something went wrong");
       }
