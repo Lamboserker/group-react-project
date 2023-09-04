@@ -215,9 +215,7 @@ const NavBar = () => {
             <li>
               <Link to="/tbc">Blog</Link>
             </li>
-            <li>
-              <Link to="/register">Login</Link>
-            </li>
+           
             <li>
               <AuthDetails />
             </li>

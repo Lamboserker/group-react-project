@@ -111,11 +111,9 @@ const LandingPage = () => {
           </div>
         </div>
       </section>
-      {showImageGrid ? (
+     
         <ImageGrid handleCategoryClick={handleCategoryClick} />
-      ) : (
-        <p>Loading random images...</p>
-      )}
+     
     </>
   );
 };
