@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/team-project/static/css/main.5b407d30.css",
-    "main.js": "/team-project/static/js/main.f22cd135.js",
-    "static/js/787.fd77b4ce.chunk.js": "/team-project/static/js/787.fd77b4ce.chunk.js",
-    "static/media/hero-banner.jpg": "/team-project/static/media/hero-banner.fb2b6c0877303ef0dfcd.jpg",
-    "index.html": "/team-project/index.html",
-    "main.5b407d30.css.map": "/team-project/static/css/main.5b407d30.css.map",
-    "main.f22cd135.js.map": "/team-project/static/js/main.f22cd135.js.map",
-    "787.fd77b4ce.chunk.js.map": "/team-project/static/js/787.fd77b4ce.chunk.js.map"
+    "main.css": "/group-react-project/static/css/main.c2949d6d.css",
+    "main.js": "/group-react-project/static/js/main.c5500516.js",
+    "static/js/787.fd77b4ce.chunk.js": "/group-react-project/static/js/787.fd77b4ce.chunk.js",
+    "static/media/hero-banner.jpg": "/group-react-project/static/media/hero-banner.fb2b6c0877303ef0dfcd.jpg",
+    "index.html": "/group-react-project/index.html",
+    "main.c2949d6d.css.map": "/group-react-project/static/css/main.c2949d6d.css.map",
+    "main.c5500516.js.map": "/group-react-project/static/js/main.c5500516.js.map",
+    "787.fd77b4ce.chunk.js.map": "/group-react-project/static/js/787.fd77b4ce.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.5b407d30.css",
-    "static/js/main.f22cd135.js"
+    "static/css/main.c2949d6d.css",
+    "static/js/main.c5500516.js"
   ]
 }
