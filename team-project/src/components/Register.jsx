@@ -104,9 +104,9 @@ const Register = () => {
             {errMsg}
           </p>
           <div className="section-top">
-            <a href="/">
+            <Link to="/">
               <img className="logo-login" src={logo} alt="logo" />
-            </a>
+            </Link>
 
             <h1 className="register">Sign Up</h1>
             <p>Unlock Your Creative Journey: Register and Explore!</p>

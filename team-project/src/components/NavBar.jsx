@@ -64,9 +64,9 @@ const NavBar = () => {
     <>
       <section id="header">
         <div className="logo">
-          <a href="/">
+          <Link to="/">
             <img src={PixPulseLogo} className="logo-img" alt="company logo" />
-          </a>
+          </Link>
         </div>
 
         {/* Hamburger Menu Button for Mobile and Tablet */}
